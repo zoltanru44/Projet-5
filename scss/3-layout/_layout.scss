@@ -1,0 +1,38 @@
+/*reinitit link*/
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+/*header*/
+
+body {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    height: 120px;
+    background-color: $clr_header_bg;
+    &__left {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: $mrg_header;
+        &__logo {
+            height: 50px;
+        }
+        &__brand {
+            margin-left: 20px;
+        }
+    }
+    &__right {
+        margin-right: $mrg_header;
+    }
+}
