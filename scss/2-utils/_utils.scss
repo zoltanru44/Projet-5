@@ -1,0 +1,7 @@
+/*mixin responsive*/
+
+@mixin responsive_mobile_size {
+    @media screen and (max-width: $media_size_smartphone) {
+        @content;
+    }
+}

@@ -1,16 +1,20 @@
+/*clr logo brief*/
+/*beige*/
 /*header margin*/
+/*smartphone screen size*/
+/*mixin responsive*/
 /*reinitit link*/
 a {
   text-decoration: none;
   color: black;
 }
 
-/*header*/
 body {
   max-width: 1200px;
   margin: auto;
 }
 
+/*HEADER START*/
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -26,6 +30,16 @@ body {
   background-color: #f1cfea;
 }
 
+@media screen and (max-width: 576px) {
+  .header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 150px;
+  }
+}
+
 .header__left {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -39,6 +53,21 @@ body {
   margin-left: 50px;
 }
 
+@media screen and (max-width: 576px) {
+  .header__left {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 0;
+  }
+}
+
+.header__left:hover {
+  text-decoration: none;
+  color: black;
+}
+
 .header__left__logo {
   height: 50px;
 }
@@ -47,6 +76,59 @@ body {
   margin-left: 20px;
 }
 
+@media screen and (max-width: 576px) {
+  .header__left__brand {
+    margin: 5px 0 0 0;
+  }
+}
+
 .header__right {
   margin-right: 50px;
+  font-size: 1.5em;
 }
+
+@media screen and (max-width: 576px) {
+  .header__right {
+    margin: 0;
+  }
+}
+
+.header__right:hover {
+  text-decoration: none;
+  color: #6e205e;
+}
+
+/*HEADER END*/
+/*MAIN START*/
+.main__title {
+  margin: 30px 10px;
+}
+
+.article__card__text {
+  padding: 10px;
+}
+
+.article__card__text__name {
+  font-size: 1.3em;
+}
+
+.article__card__text__price {
+  font-size: 1.3em;
+}
+
+.article__card__btn {
+  margin-bottom: 10px;
+  padding: 5px 0;
+  border-radius: 10px;
+  background-color: #d3ab91;
+  -webkit-transition-duration: 500ms;
+          transition-duration: 500ms;
+}
+
+.article__card__btn:hover {
+  background-color: #c48f6d;
+}
+
+/*MAIN END*/
+/*FOOTER START*/
+/*FOOTER END*/

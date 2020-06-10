@@ -5,13 +5,13 @@ a {
     color: black;
 }
 
-
-/*header*/
-
 body {
     max-width: 1200px;
     margin: auto;
 }
+
+
+/*HEADER START*/
 
 .header {
     display: flex;
@@ -20,19 +20,84 @@ body {
     margin-top: 20px;
     height: 120px;
     background-color: $clr_header_bg;
+    @include responsive_mobile_size {
+        flex-direction: column;
+        height: 150px;
+    }
     &__left {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-left: $mrg_header;
+        @include responsive_mobile_size {
+            flex-direction: column;
+            margin: 0;
+        }
+        &:hover {
+            text-decoration: none;
+            color: black;
+        }
         &__logo {
             height: 50px;
         }
         &__brand {
             margin-left: 20px;
+            @include responsive_mobile_size {
+                margin: 5px 0 0 0;
+            }
         }
     }
     &__right {
         margin-right: $mrg_header;
+        font-size: 1.5em;
+        @include responsive_mobile_size {
+            margin: 0;
+        }
+        &:hover {
+            text-decoration: none;
+            color: darken($color: $clr_header_bg, $amount: 60)
+        }
     }
 }
+
+
+/*HEADER END*/
+
+
+/*MAIN START*/
+
+.main__title {
+    margin: 30px 10px;
+}
+
+.article__card {
+    &__img {}
+    &__text {
+        padding: 10px;
+        &__name {
+            font-size: 1.3em;
+        }
+        &__price {
+            font-size: 1.3em;
+        }
+    }
+    &__btn {
+        margin-bottom: 10px;
+        padding: 5px 0;
+        border-radius: 10px;
+        background-color: $clr_secondary;
+        transition-duration: 500ms;
+        &:hover {
+            background-color: darken($color: $clr_secondary, $amount: 10);
+        }
+    }
+}
+
+
+/*MAIN END*/
+
+
+/*FOOTER START*/
+
+
+/*FOOTER END*/
