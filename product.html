@@ -5,7 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta description="">
-    <title>Orinoco - Panier</title>
+    <title>Orinoco - Produit</title>
+
+    <link rel="stylesheet" href="./css/main.css" type="text/css">
+
+    <!--bootstrap-->
+    <link rel="stylesheet" type="text/css" href="./bootstrap-4.5.0-dist/css/bootstrap.min.css">
+    <script src="./javascript/jquery-2.1.0.min.js" defer></script>
+    <script src="./bootstrap-4.5.0-dist/js/bootstrap.min.js" defer></script>
+
+    <script src="./javascript/product.js" defer></script>
 
     <link rel="stylesheet" href="./css/main.css" type="text/css">
 </head>
@@ -19,8 +28,28 @@
         <a href="panier.html" class="header__right" title="panier">Mon Panier</a>
     </header>
 
-    <main>
+    <main class="conteneur">
+        <section class="row">
+            <div class="col-sm-6" id="left_bloc">
+                <h2>Produit</h2>
+                <!--<img src="./images/teddy_1.jpg" alt="teddy picture" class="img-fluid">
+                <h1 class="text-center js_modified">Nom nounours</h1>-->
+            </div>
+            <div class=" col-sm-6 ">
+                <div class="row ">
+                    <div class="col-sm-6 ">
+                        <h3>Option</h3>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <h3>Quantité</h3>
+                    </div>
+                </div>
+                <h3 class="js_modified">Prix <span>55€</span></h3>
 
+                <button type="button " class="article__card__btn btn-block ">Ajouter au panier</button>
+
+            </div>
+        </section>
 
     </main>
 

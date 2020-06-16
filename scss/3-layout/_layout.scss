@@ -64,40 +64,19 @@ body {
 /*HEADER END*/
 
 
-/*MAIN START*/
-
-.main__title {
-    margin: 30px 10px;
-}
-
-.article__card {
-    &__img {}
-    &__text {
-        padding: 10px;
-        &__name {
-            font-size: 1.3em;
-        }
-        &__price {
-            font-size: 1.3em;
-        }
-    }
-    &__btn {
-        margin-bottom: 10px;
-        padding: 5px 0;
-        border-radius: 10px;
-        background-color: $clr_secondary;
-        transition-duration: 500ms;
-        &:hover {
-            background-color: darken($color: $clr_secondary, $amount: 10);
-        }
-    }
-}
-
-
-/*MAIN END*/
-
-
 /*FOOTER START*/
+
+.footer {
+    height: 50px;
+    background-color: $clr_header_bg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    &__legal {
+        font-size: 0.7em;
+    }
+}
 
 
 /*FOOTER END*/

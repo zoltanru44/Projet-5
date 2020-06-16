@@ -1,5 +1,6 @@
 /*clr logo brief*/
 /*beige*/
+/*clr for modified elements by JS*/
 /*header margin*/
 /*smartphone screen size*/
 /*mixin responsive*/
@@ -99,36 +100,71 @@ body {
 }
 
 /*HEADER END*/
+/*FOOTER START*/
+.footer {
+  height: 50px;
+  background-color: #f1cfea;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 20px;
+}
+
+.footer__legal {
+  font-size: 0.7em;
+}
+
+/*FOOTER END*/
 /*MAIN START*/
 .main__title {
   margin: 30px 10px;
 }
 
-.article__card__text {
+.catalogue {
+  width: 100%;
+}
+
+.catalogue__section__card__img {
+  height: 220px;
+  width: auto;
+  margin: 5px;
+}
+
+.catalogue__section__card__text {
   padding: 10px;
 }
 
-.article__card__text__name {
+.catalogue__section__card__text__name {
   font-size: 1.3em;
 }
 
-.article__card__text__price {
+.catalogue__section__card__text__price {
   font-size: 1.3em;
 }
 
-.article__card__btn {
+.catalogue__section__card__btn {
   margin-bottom: 10px;
-  padding: 5px 0;
   border-radius: 10px;
+  height: 30px;
   background-color: #d3ab91;
-  -webkit-transition-duration: 500ms;
-          transition-duration: 500ms;
+  -webkit-transition-duration: 300ms;
+          transition-duration: 300ms;
+  padding: auto;
+  font-size: 1em;
+  font-weight: normal;
+  -webkit-box-shadow: 2px 2px 2px #6d452b;
+          box-shadow: 2px 2px 2px #6d452b;
 }
 
-.article__card__btn:hover {
+.catalogue__section__card__btn:hover {
   background-color: #c48f6d;
+  color: white;
 }
 
 /*MAIN END*/
-/*FOOTER START*/
-/*FOOTER END*/

@@ -11,7 +11,11 @@
 
     <!--bootstrap-->
     <link rel="stylesheet" type="text/css" href="./bootstrap-4.5.0-dist/css/bootstrap.min.css">
-    <script src="./bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+    <script src="./javascript/jquery-2.1.0.min.js" defer></script>
+    <script src="./bootstrap-4.5.0-dist/js/bootstrap.min.js" defer></script>
+
+    <script src="./javascript/index.js" defer></script>
+
 
     <link rel="stylesheet" href="./css/main.css" type="text/css">
 </head>
@@ -26,54 +30,31 @@
     </header>
     <main class="container">
         <div class="row">
-            <h2 class="main__title col-sm-12">Personnalisez vos produits</h2>
+            <h2 class="main__title col-sm-12">Tous nos articles</h2>
             <!--1st teddy-->
-            <article class="article__card card col-sm-4">
-                <img class="article__card__img card-img-top" src="./images/teddy_1.jpg" alt="Hand made teddy">
-                <div class="article__card__text card-body text-center">
-                    <h3 class="article__card__text__name product_name">Petit nounours tout mignon</h3>
-                    <h3 class="article__card__text__price">55€</h3>
-                </div>
-                <button type="button" class="article__card__btn btn-block">Voir le produit</button>
-            </article>
-            <!--2nd teddy-->
-            <article class="article__card card col-sm-4">
-                <img class="article__card__img card-img-top" src="./images/teddy_2.jpg" alt="Hand made teddy">
-                <div class="article__card__text card-body text-center">
-                    <h3 class="article__card__text__name product_name">Nounours mignon</h3>
-                    <h3 class="article__card__text__price">55€</h3>
-                </div>
-                <button type="button" class="article__card__btn btn-block">Voir le produit</button>
-            </article>
-            <!--3th teddy-->
-            <article class="article__card card col-sm-4">
-                <img class="article__card__img card-img-top" src="./images/teddy_3.jpg" alt="Hand made teddy">
-                <div class="article__card__text card-body text-center">
-                    <h3 class="article__card__text__name product_name">Nounours et son copain</h3>
-                    <h3 class="article__card__text__price">55€</h3>
-                </div>
-                <button type="button" class="article__card__btn btn-block">Voir le produit</button>
-            </article>
-            <!--4th teddy-->
-            <article class="article__card card col-sm-4">
-                <img class="article__card__img card-img-top" src="./images/teddy_4.jpg" alt="Hand made teddy">
-                <div class="article__card__text card-body text-center">
-                    <h3 class="article__card__text__name product_name">Nounours supporter</h3>
-                    <h3 class="article__card__text__price">55€</h3>
-                </div>
-                <button type="button" class="article__card__btn btn-block">Voir le produit</button>
-            </article>
-            <!--5th teddy-->
-            <article class="article__card card col-sm-4">
-                <img class="article__card__img card-img-top" src="./images/teddy_5.jpg" alt="Hand made teddy">
-                <div class="article__card__text card-body text-center">
-                    <h3 class="article__card__text__name product_name">Nounours de dos</h3>
-                    <h3 class="article__card__text__price">55€</h3>
-                </div>
-                <button type="button" class="article__card__btn btn-block">Voir le produit</button>
-            </article>
+            <div id="catalogue" class="catalogue row">
+
+            </div>
+
+
+
         </div>
     </main>
+    <!--END MAIN-->
+    <!--START FOOTER-->
+    <footer class="footer">
+        <a class="footer__legal" href="#" title="mentions légales">Mentions légales</a>
+        <!--<article class="article__card card col-sm-4">
+            <img class="article__card__img" src="./images/teddy_1.jpg" alt="Hand made teddy">
+            <div class="article__card__text card-body text-center">
+                <h3 class="article__card__text__name product_name" id="teddy_1_name"></h3>
+                <h3 class="article__card__text__price">55€</h3>
+            </div>
+            <a class="article__card__btn btn-block badge" id="button_1" href="product.html">Voir le produit</a>
+        </article>-->
+
+    </footer>
+    <!--END FOOTER-->
 
 </body>
 

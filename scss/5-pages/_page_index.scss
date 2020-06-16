@@ -1,0 +1,43 @@
+/*MAIN START*/
+
+.main__title {
+    margin: 30px 10px;
+}
+
+.catalogue {
+    width: 100%;
+    &__section__card {
+        &__img {
+            height: 220px;
+            width: auto;
+            margin: 5px;
+        }
+        &__text {
+            padding: 10px;
+            &__name {
+                font-size: 1.3em;
+            }
+            &__price {
+                font-size: 1.3em;
+            }
+        }
+        &__btn {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            height: 30px;
+            background-color: $clr_secondary;
+            transition-duration: 300ms;
+            padding: auto;
+            font-size: 1em;
+            font-weight: normal;
+            box-shadow: 2px 2px 2px darken($color: $clr_secondary, $amount: 40);
+            &:hover {
+                background-color: darken($color: $clr_secondary, $amount: 10);
+                color: white;
+            }
+        }
+    }
+}
+
+
+/*MAIN END*/
