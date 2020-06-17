@@ -62,7 +62,7 @@ function getAllTeddies() {
                 return response.json() // Retourne la réponse en format JSON quand terminé
             }
         })
-        .then(function(data) { //data est la réponse de reponse.json
+        .then(function(data) { //réponse de reponse.json est l'argument
             console.log(data)
                 //Section Add
             for (let i = 0; i < data.length; i++) {

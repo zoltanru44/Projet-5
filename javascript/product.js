@@ -4,14 +4,19 @@ const api_1 = "http://localhost:3000/api/teddies/"
 /*----->CONSTANTS<-----*/
 const winLocation = window.location.search; //Get location.search
 let winLocation_ID;
-let data;
 var leftBlock = document.getElementById("left_bloc");
+var rightBlock = document.getElementById("right_bloc");
+var teddyDescription = document.getElementById("teddy_description");
+var optionList = document.getElementById("options_list");
+var products = [];
+const buttonAddBasket = document.getElementById("button_add_basket");
 
-/*------>FUNCTION<------*/
+/*------>FUNCTIONS<------*/
+
+//Function to get the id without ?id=
 function getUrl_Id() {
     const winLocation_ID_array = winLocation.split("="); //Split the location.search
     winLocation_ID = winLocation_ID_array[1]; //Get the part after "="
-    console.log(winLocation_ID);
     return winLocation_ID;
 }
 
@@ -21,10 +26,46 @@ function addPicture(section, dataTeddyPicture) {
     section.appendChild(newPicture);
     newPicture.setAttribute('src', dataTeddyPicture);
     newPicture.className = "img-fluid"
-    console.log(newPicture.className);
+    console.log("Adresse de l'image : " + newPicture.src);
+}
+//Function Add name
+function addName(section, dataTeddyName) {
+    const newName = document.createElement("h2");
+    section.appendChild(newName);
+    newName.innerHTML = dataTeddyName;
+    newName.className = "text-center js_modified";
+    console.log("nom du nounours : " + dataTeddyName);
+}
+//Function Add description
+function addDescription(dataTeddyDescription) {
+    teddyDescription.innerHTML = dataTeddyDescription;
+    teddyDescription.className = "text-left";
+    console.log("description du nounours : " + dataTeddyDescription);
+}
+//Function options
+function addOptions(ulName, dataOption) {
+    for (let i = 0; i < dataOption.length; i++) {
+        const newOption = document.createElement('option');
+        ulName.appendChild(newOption);
+        newOption.innerHTML = dataOption[i];
+        newOption.className = "right_bloc__options_list__choice "
+        newOption.id = "option_" + i;
+    }
 }
 
-
+//Event function
+//Click function
+function addBasket(_Id, imageUrl, Name, Option, Price, Description) {
+    let addTeddy = {
+        ID: _Id,
+        picture: imageUrl,
+        name: Name,
+        option: Option,
+        price: Price,
+        description: Description,
+    }
+    console.log(addTeddy);
+}
 /*----->REQUEST>-----*/
 function getAllTeddies() {
     fetch(api_1 + winLocation_ID) //Requete de l'API
@@ -35,35 +76,42 @@ function getAllTeddies() {
                 return response.json() // Retourne la réponse en format JSON quand terminé
             }
         })
-        .then(function(data) { //data est la réponse de reponse.json
-            console.log(data)
-                //Section Add
-                // Add picture
-            addPicture(leftBlock, data.imageUrl);
+        .then(function(data) {
             console.log(data);
+            //left block Adds
+            // Add picture
+            addPicture(leftBlock, data.imageUrl);
+            // Add name
+            addName(leftBlock, data.name);
+            //Right bloc Adds
+            //Add Description
+            addDescription(data.description);
+            //Add options
+            addOptions(optionList, data.colors);
 
-            /*for (let i = 0; i < data.length; i++) {
-                console.log(i)
-                    //new section
-                const newSection = document.createElement("section");
-                catalogue.appendChild(newSection);
-                newSection.className = "catalogue__section__card card col-sm-4";
-                console.log(newSection.className);
-                //Add Picture
-                addPicture(newSection, data[i].imageUrl);
-                //Add Name and price
-                addNamePrice(newSection, data[i].name, data[i].price);
-                //Add Button with id link
-                addButtonId(newSection, data[i]._id);
-            }*/
+
+
+            /*----->EVENT<-----*/
+            buttonAddBasket.addEventListener('click', addBasket(data._id, data.imageUrl, data.name, Option, data.price, data.description));
+
+
         })
-        .catch(function(error) {
-            console.log("Erreur lors de l'appel de la fonction" + error);
-        })
+
+    .catch(function(error) {
+        console.log("Erreur lors de l'appel de la fonction " + error);
+    })
 }
 
 /*----->Appel de la fonction<-----*/
-getAllTeddies()
-getUrl_Id()
-console.log(winLocation_ID)
-console.log(api_1 + winLocation_ID)
+getUrl_Id();
+getAllTeddies();
+
+console.log("ID de la page " + winLocation_ID);
+console.log("Adresse utilisée pour la requete " + api_1 + winLocation_ID);
+
+
+
+/*----->CONSTANT<-----*/
+
+
+/*----->FUNCTION<-----*/
