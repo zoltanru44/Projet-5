@@ -11,6 +11,7 @@ var optionList = document.getElementById("options_list");
 var products = [];
 const buttonAddBasket = document.getElementById("button_add_basket");
 
+
 /*------>FUNCTIONS<------*/
 
 //Function to get the id without ?id=
@@ -53,19 +54,7 @@ function addOptions(ulName, dataOption) {
     }
 }
 
-//Event function
-//Click function
-function addBasket(_Id, imageUrl, Name, Option, Price, Description) {
-    let addTeddy = {
-        ID: _Id,
-        picture: imageUrl,
-        name: Name,
-        option: Option,
-        price: Price,
-        description: Description,
-    }
-    console.log(addTeddy);
-}
+
 /*----->REQUEST>-----*/
 function getAllTeddies() {
     fetch(api_1 + winLocation_ID) //Requete de l'API
@@ -92,14 +81,39 @@ function getAllTeddies() {
 
 
             /*----->EVENT<-----*/
-            buttonAddBasket.addEventListener('click', addBasket(data._id, data.imageUrl, data.name, Option, data.price, data.description));
 
+            //Click function create addTeddy
+            buttonAddBasket.addEventListener('click', function() {
+                let addTeddy = {
+                    ID: data._id,
+                    picture: data.imageUrl,
+                    name: data.name,
+                    option: optionList.value,
+                    price: data.price,
+                    description: data.description,
+                }
+                console.log(addTeddy);
+                const teddiesAdded = localStorage.getItem("products")
+                if (teddiesAdded) {
+                    teddiesArray = JSON.parse(teddiesAdded);
+                    teddiesArray.push(addTeddy);
+                    localStorage.setItem('products', JSON.stringify(teddiesArray));
+                    alert(data.name + " a bien été ajouté au panier !");
+                } else {
+                    teddiesArray = [];
+                    teddiesArray.push(addTeddy);
+                    localStorage.setItem('products', JSON.stringify(teddiesArray));
+                    alert(data.name + " a bien été ajouté au panier !");
+                }
+                console.log(teddiesArray);
+                console.log(teddiesAdded);
+            });
 
         })
 
-    .catch(function(error) {
+    /*.catch(function(error) {
         console.log("Erreur lors de l'appel de la fonction " + error);
-    })
+    })*/
 }
 
 /*----->Appel de la fonction<-----*/
