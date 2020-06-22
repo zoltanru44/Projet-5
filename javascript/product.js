@@ -8,7 +8,9 @@ var leftBlock = document.getElementById("left_bloc");
 var rightBlock = document.getElementById("right_bloc");
 var teddyDescription = document.getElementById("teddy_description");
 var optionList = document.getElementById("options_list");
-var products = [];
+var productPrice = document.getElementById("product_price");
+var productNumber = document.getElementById("input_number_product");
+var basketProducts = [];
 const buttonAddBasket = document.getElementById("button_add_basket");
 
 
@@ -53,6 +55,13 @@ function addOptions(ulName, dataOption) {
         newOption.id = "option_" + i;
     }
 }
+//function Price
+function addPrice(section, dataTeddyPrice) {
+    const newPrice = document.createElement("p");
+    section.appendChild(newPrice);
+    dataTeddyPrice_format = dataTeddyPrice / 100
+    newPrice.innerHTML = dataTeddyPrice_format.toPrecision(4) + " €";
+}
 
 
 /*----->REQUEST>-----*/
@@ -77,6 +86,8 @@ function getAllTeddies() {
             addDescription(data.description);
             //Add options
             addOptions(optionList, data.colors);
+            //Add price
+            addPrice(productPrice, data.price);
 
 
 
@@ -84,29 +95,44 @@ function getAllTeddies() {
 
             //Click function create addTeddy
             buttonAddBasket.addEventListener('click', function() {
-                let addTeddy = {
-                    ID: data._id,
-                    picture: data.imageUrl,
-                    name: data.name,
-                    option: optionList.value,
-                    price: data.price,
-                    description: data.description,
-                }
-                console.log(addTeddy);
-                const teddiesAdded = localStorage.getItem("products")
-                if (teddiesAdded) {
-                    teddiesArray = JSON.parse(teddiesAdded);
-                    teddiesArray.push(addTeddy);
-                    localStorage.setItem('products', JSON.stringify(teddiesArray));
-                    alert(data.name + " a bien été ajouté au panier !");
+                if (productNumber.value <= 0) {
+                    alert(" Merci d'ajouter une quantité valable");
                 } else {
-                    teddiesArray = [];
-                    teddiesArray.push(addTeddy);
-                    localStorage.setItem('products', JSON.stringify(teddiesArray));
-                    alert(data.name + " a bien été ajouté au panier !");
+                    let addTeddy = {
+                        ID: data._id,
+                        picture: data.imageUrl,
+                        name: data.name,
+                        option: optionList.value,
+                        price: data.price,
+                        description: data.description,
+                        number: productNumber.value,
+                    }
+                    console.log(addTeddy);
+                    const teddiesAdded = localStorage.getItem("basketProducts")
+                    if (teddiesAdded) {
+                        teddiesArray = JSON.parse(teddiesAdded);
+                        teddiesArray.push(addTeddy);
+                        localStorage.setItem('basketProducts', JSON.stringify(teddiesArray));
+                        if (productNumber.value != 1) {
+                            alert(productNumber.value + " nounours " + data.name + " ont bien été ajoutés au panier !");
+                        } else {
+                            alert(productNumber.value + " nounours " + data.name + " a bien été ajouté au panier !");
+                        }
+
+                    } else {
+                        teddiesArray = [];
+                        teddiesArray.push(addTeddy);
+                        localStorage.setItem('basketProducts', JSON.stringify(teddiesArray));
+                        if (productNumber.value != 1) {
+                            alert(productNumber.value + " nounours " + data.name + " ont bien été ajoutés au panier !");
+                        } else {
+                            alert(productNumber.value + " nounours " + data.name + " a bien été ajouté au panier !");
+                        }
+                    }
+                    console.log(teddiesArray);
+                    console.log(teddiesAdded);
+
                 }
-                console.log(teddiesArray);
-                console.log(teddiesAdded);
             });
 
         })

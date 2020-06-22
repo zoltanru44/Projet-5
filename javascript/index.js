@@ -32,9 +32,10 @@ function addNamePrice(section, dataTeddyName, dataTeddyPrice) {
     //Add price
     const newPrice = document.createElement("p");
     newDiv.appendChild(newPrice);
-    newPrice.innerHTML = dataTeddyPrice + "€";
+    dataTeddyPrice_format = dataTeddyPrice / 100
+    newPrice.innerHTML = dataTeddyPrice_format.toPrecision(4) + " €";
     newPrice.className = "catalogue__section__card__text__price ";
-    console.log(dataTeddyPrice);
+    console.log(dataTeddyPrice / 100);
 }
 //Function Add button with id link
 function addButtonId(section, dataTeddy_id) {

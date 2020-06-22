@@ -1,0 +1,56 @@
+.panier_main {
+    &__section {
+        &__head {
+            font-size: 1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &__title {
+                font-size: 3em;
+            }
+            &__button {
+                border-radius: 5px;
+                height: 50px;
+                background-color: $clr_button_suppr;
+                color: white;
+                box-shadow: 5px 5px 5px;
+                &:hover {
+                    background-color: $clr_button_suppr--hover;
+                }
+            }
+        }
+        &__basket {
+            &__name {
+                font-size: 1.2em;
+            }
+            &__product {
+                &__img {
+                    width: 150px;
+                }
+            }
+        }
+    }
+    &__aside {
+        &__resume {
+            &__div_articles {
+                display: flex;
+                justify-content: space-between;
+            }
+            &__div_price {
+                display: flex;
+                justify-content: space-between;
+            }
+            &__div_port {
+                display: flex;
+                justify-content: space-between;
+            }
+            &__div_total {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+        &__form {
+            font-size: 1em;
+        }
+    }
+}

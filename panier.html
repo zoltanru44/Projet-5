@@ -15,6 +15,7 @@
     <script src="./bootstrap-4.5.0-dist/js/bootstrap.min.js" defer></script>
 
     <script src="./javascript/panier.js" defer></script>
+    <script src="./javascript/basketNumber.js" defer></script>
 
     <link rel="stylesheet" href="./css/main.css" type="text/css">
 </head>
@@ -26,23 +27,76 @@
             <img src="images/logo.png" alt="logo" class="header__left__logo">
             <h1 class="header__left__brand">Orinoco</h1>
         </a>
-        <a href="panier.html" class="header__right" title="panier">Mon Panier</a>
+        <a href="panier.html" class="header__right" id="mon_panier" title="panier">Mon Panier</a>
     </header>
 
-    <main>
-        <section class="panier_main__section__head">
-            <div>
+    <main class="panier_main row">
+        <section class="panier_main__section col-sm-9">
+            <div class="panier_main__section__head">
                 <h1 class="panier_main__section__head__title">Votre panier</h1>
                 <button class="panier_main__section__head__button" id="button_delete_basket">Vider le panier</button>
             </div>
             <div class="panier_main__section__basket" id="basket_content">
             </div>
         </section>
-        <aside class="panier_main__aside">
-            <div class="panier_main__aside__price" id="basket_price"></div>
-            <div class="panier_main__aside__form" id="basket_form"></div>
-        </aside>
+        <aside class="panier_main__aside col-sm-3">
+            <div class="panier_main__aside__resume container">
+                <h3 class="panier_main__aside__resume__total text-center">Total</h3>
+                <!--Nombre d'articles-->
+                <div class="panier_main__aside__resume__div_articles row">
+                    <p class="panier_main__aside__resume__div_articles__text">Nombre d'objets</p>
+                    <div class="panier_main__aside__resume__div_articles__price" id="objects_number"></div>
+                </div>
+                <!--Sous-total-->
+                <div class="panier_main__aside__resume__div_price row">
+                    <p class="panier_main__aside__resume__div_price__text">Sous-total</p>
+                    <div class="panier_main__aside__resume__div_price__price" id="objects_price"></div>
+                </div>
+                <!--Livraison-->
+                <div class="panier_main__aside__resume__div_port row">
+                    <p class="panier_main__aside__resume__div_port__text">Frais de port</p>
+                    <div class="panier_main__aside__resume__div_port__price" id="objects_port"></div>
+                </div>
+                <!--Total-->
+                <div class="panier_main__aside__resume__div_total row">
+                    <p class="panier_main__aside__resume__div_total__text">Total</p>
+                    <div class="panier_main__aside__resume__div_total__price" id="objects_total"></div>
+                </div>
+                <button id="button_commander">Valider mon panier</button>
+            </div>
 
+        </aside>
+        <!--form-->
+        <section>
+            <div class="panier_main__aside__form invisible" id="basket_form">
+                <!--name-->
+                <div class="panier_main__aside__form__content">
+                    <h3 class="panier_main__aside__form__text">Nom</h3>
+                    <input type="text" class="panier_main__aside__form__input" id="form_name" required>
+                </div>
+                <!--first name-->
+                <div class="panier_main__aside__form__first_content">
+                    <h3 class="panier_main__aside__form__text">Prénom</h3>
+                    <input type="text" class="panier_main__aside__form__input" id="form_first_name" required>
+                </div>
+                <!--adress-->
+                <div class="panier_main__aside__form__content">
+                    <h3 class="panier_main__aside__form__text">Adresse</h3>
+                    <input type="text" class="panier_main__aside__form__input" id="form_adress" required>
+                </div>
+                <!--city-->
+                <div class="panier_main__aside__form__content">
+                    <h3 class="panier_main__aside__form__text">Ville</h3>
+                    <input type="text" class="panier_main__aside__form__input" id="form_city" required>
+                </div>
+                <!--email-->
+                <div class="panier_main__aside__form__content">
+                    <h3 class="panier_main__aside__form__text">Email</h3>
+                    <input type="text" class="panier_main__aside__form__input" id="form_mail" required>
+                </div>
+                <button id="button_send">Valider ma commande</button>
+            </div>
+        </section>
 
     </main>
 

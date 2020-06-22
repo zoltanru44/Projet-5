@@ -15,7 +15,8 @@
     <script src="./bootstrap-4.5.0-dist/js/bootstrap.min.js" defer></script>
 
     <script src="./javascript/product.js" defer></script>
-    <script src="./javascript/panier.js" defer></script>
+    <script src="./javascript/basketNumber.js" defer></script>
+
 
 
     <link rel="stylesheet" href="./css/main.css" type="text/css">
@@ -27,13 +28,14 @@
             <img src="images/logo.png" alt="logo" class="header__left__logo">
             <h1 class="header__left__brand">Orinoco</h1>
         </a>
-        <a href="panier.html" class="header__right" title="panier">Mon Panier</a>
+        <a href="panier.html" class="header__right" title="panier" id="mon_panier">Mon Panier</a>
     </header>
 
     <main class="conteneur">
         <section class="row">
             <div class="col-sm-6" id="left_bloc">
-                <h2>Produit</h2>
+                <a href="index/html" class="left_bloc__return">Retour au catalogue</a>
+                <h2 class="left_bloc__basketProducts">Produit</h2>
                 <!--<img src="./images/teddy_1.jpg" alt="teddy picture" class="img-fluid">
                 <h1 class="text-center js_modified">Nom nounours</h1>-->
             </div>
@@ -43,20 +45,23 @@
                     <p id="teddy_description"></p>
                 </div>
                 <div class="row ">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <h3 class="right_bloc__options">Option</h3>
                         <div class="right_bloc__options_list">
                             <select class="right_bloc__options_list" id="options_list">
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-6 ">
+                    <div class="col-sm-4">
                         <h3>Quantité</h3>
+                        <div class="row">
+                            <input id="input_number_product" type="number" class="col-sm-4">
+                        </div>
                     </div>
-                    <!--<h3 class="js_modified ">Prix <span>55€</span></h3>-->
-
-                    <button type="button" class="article__card__btn btn-block" id="button_add_basket">Ajouter au panier</button>
-
+                    <div class="col-sm-4" id="product_price">
+                        <h3>Prix</h3>
+                    </div>
+                    <button type="button" class="article__card__btn btn-block col-sm-6" id="button_add_basket">Ajouter au panier</button>
                 </div>
         </section>
 

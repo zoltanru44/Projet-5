@@ -1,6 +1,6 @@
 /*clr logo brief*/
 /*beige*/
-/*clr for modified elements by JS*/
+/*clr for buttons*/
 /*header margin*/
 /*smartphone screen size*/
 /*mixin responsive*/
@@ -169,5 +169,83 @@ body {
 
 /*MAIN END*/
 .right_bloc__description .right_bloc__options__list__choice {
+  font-size: 1em;
+}
+
+.panier_main__section__head {
+  font-size: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.panier_main__section__head__title {
+  font-size: 3em;
+}
+
+.panier_main__section__head__button {
+  border-radius: 5px;
+  height: 50px;
+  background-color: #b1275b;
+  color: white;
+  -webkit-box-shadow: 5px 5px 5px;
+          box-shadow: 5px 5px 5px;
+}
+
+.panier_main__section__head__button:hover {
+  background-color: #db2269;
+}
+
+.panier_main__section__basket__name {
+  font-size: 1.2em;
+}
+
+.panier_main__section__basket__product__img {
+  width: 150px;
+}
+
+.panier_main__aside__resume__div_articles {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.panier_main__aside__resume__div_price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.panier_main__aside__resume__div_port {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.panier_main__aside__resume__div_total {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.panier_main__aside__form {
   font-size: 1em;
 }
