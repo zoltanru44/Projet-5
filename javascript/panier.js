@@ -251,7 +251,7 @@ buttonSend.addEventListener('click', function() {
             products.push(basketTeddiesArray[i].ID);
         }
 
-        console.log(products);
+        console.log(typeof basketTeddiesArray[1].ID);
 
         // Creation of contact array
         let contact = {

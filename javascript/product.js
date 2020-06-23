@@ -131,6 +131,7 @@ function getAllTeddies() {
                     }
                     console.log(teddiesArray);
                     console.log(teddiesAdded);
+                    refreshNumberBasket();
 
                 }
             });
