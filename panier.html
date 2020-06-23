@@ -14,8 +14,9 @@
     <script src="./javascript/jquery-2.1.0.min.js" defer></script>
     <script src="./bootstrap-4.5.0-dist/js/bootstrap.min.js" defer></script>
 
-    <script src="./javascript/panier.js" defer></script>
     <script src="./javascript/basketNumber.js" defer></script>
+    <script src="./javascript/panier.js" defer></script>
+
 
     <link rel="stylesheet" href="./css/main.css" type="text/css">
 </head>
@@ -34,7 +35,7 @@
         <section class="panier_main__section col-sm-9">
             <div class="panier_main__section__head">
                 <h1 class="panier_main__section__head__title">Votre panier</h1>
-                <button class="panier_main__section__head__button" id="button_delete_basket">Vider le panier</button>
+                <button type="button" class="btn btn-danger" id="button_delete_basket">Vider le panier</button>
             </div>
             <div class="panier_main__section__basket" id="basket_content">
             </div>
@@ -62,7 +63,7 @@
                     <p class="panier_main__aside__resume__div_total__text">Total</p>
                     <div class="panier_main__aside__resume__div_total__price" id="objects_total"></div>
                 </div>
-                <button id="button_commander">Valider mon panier</button>
+                <button id="button_commander" type="button" class="btn btn-success">Valider mon panier</button>
             </div>
 
         </aside>
@@ -70,31 +71,36 @@
         <section>
             <div class="panier_main__aside__form invisible" id="basket_form">
                 <!--name-->
-                <div class="panier_main__aside__form__content">
-                    <h3 class="panier_main__aside__form__text">Nom</h3>
-                    <input type="text" class="panier_main__aside__form__input" id="form_name" required>
+                <div class="panier_main__aside__form__content input-group form-group has-feedback" id="form_name_group">
+                    <label for="form_name" class="panier_main__aside__form__label input-group-text">Nom</label>
+                    <input type="text" class="panier_main__aside__form__input form-control" placeholder="DUPONT" id="form_name" required>
                 </div>
                 <!--first name-->
-                <div class="panier_main__aside__form__first_content">
-                    <h3 class="panier_main__aside__form__text">Prénom</h3>
-                    <input type="text" class="panier_main__aside__form__input" id="form_first_name" required>
+                <div class="panier_main__aside__form__content input-group form-group has-feedback" id="form_first_name_group">
+                    <label for="form_first_name" class="panier_main__aside__form__label input-group-text">Prénom</label>
+                    <input type="text" class="panier_main__aside__form__input form-control" placeholder="José" id="form_first_name" required>
                 </div>
+
                 <!--adress-->
-                <div class="panier_main__aside__form__content">
-                    <h3 class="panier_main__aside__form__text">Adresse</h3>
-                    <input type="text" class="panier_main__aside__form__input" id="form_adress" required>
+                <div class="panier_main__aside__form__address__content input-group form-group has-feedback" id="form_first_name_group">
+                    <label for="form_address" class="panier_main__aside__form__label input-group-text">Adresse</label>
+                    <input type="text" class="panier_main__aside__form__input form-control" placeholder="20 route de la Garenne" id="form_address" required>
                 </div>
+
                 <!--city-->
-                <div class="panier_main__aside__form__content">
-                    <h3 class="panier_main__aside__form__text">Ville</h3>
-                    <input type="text" class="panier_main__aside__form__input" id="form_city" required>
+                <div class="panier_main__aside__form__content input-group form-group has-feedback" id="form_city_group">
+                    <label for="form_city" class="panier_main__aside__form__first__text input-group-text">Ville</label>
+                    <input type="text" class="panier_main__aside__form__input form-control" placeholder="Paris" id="form_city" required>
                 </div>
+
                 <!--email-->
-                <div class="panier_main__aside__form__content">
-                    <h3 class="panier_main__aside__form__text">Email</h3>
-                    <input type="text" class="panier_main__aside__form__input" id="form_mail" required>
+                <div class="panier_main__aside__form__content input-group form-group has-feedback" id="form_mail_group">
+                    <label for="form_mail" class="panier_main__aside__form__first__text input-group-text">Email</label>
+                    <input type="email" class="panier_main__aside__form__input form-control" placeholder="jose.dupont@orimail.com" id="form_mail" required>
                 </div>
-                <button id="button_send">Valider ma commande</button>
+
+
+                <button id="button_send" type="button" class="btn btn-success">Valider ma commande</button>
             </div>
         </section>
 

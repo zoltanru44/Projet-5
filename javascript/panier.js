@@ -16,9 +16,10 @@ const objectsTotal = document.getElementById("objects_total");
 const basketForm = document.getElementById("basket_form");
 
 //Inputs form
+const formNameGroup = document.getElementById("form_name_group");
 const formName = document.getElementById("form_name");
 const formFirstName = document.getElementById("form_first_name");
-const formAddress = document.getElementById("form_adress");
+const formAddress = document.getElementById("form_address");
 const formCity = document.getElementById("form_city");
 const formMail = document.getElementById("form_mail");
 
@@ -82,12 +83,20 @@ function addProductList_description(section, localDataTeddy, i) {
     newPrice.innerHTML = localDataTeddy_price_format.toPrecision(4) + " €";
     newPrice.className = "panier_main__section__basket__product__div_price__price";
 
-    //DIV_1 ---> DIV_3 --> Add Button for delete object
+    //DIV_1 ---> DIV_3 --> Creation number of products
+    const newNumber = document.createElement("p");
+    newDiv_3.appendChild(newNumber);
+    const localDataTeddy_number = localDataTeddy[i].number;
+    newNumber.innerHTML = "Nombre de nounours : " + localDataTeddy_number;
+    newNumber.className = "panier_main__section__basket__product__div_number";
+
+    /*//DIV_1 ---> DIV_3 --> Add Button for delete object
     const newButton = document.createElement("button");
     newDiv_3.appendChild(newButton);
     newButton.innerHTML = "Supprimer le produit";
     newButton.id = "button_delete_" + i;
-    newButton.className = "panier_main__section__basket__product__div_price__button button_single_delete";
+    newButton.className = "btn btn-warning";
+    newButton.type = "button";*/
 }
 
 /*----->function for total calculate<-----*/
@@ -113,11 +122,26 @@ function totalCalculation(i) {
 
 /*----->Regex functions<-----*/
 function validText(value) {
-    return /^[a-zA-Z]{3,}$/.test(value);
+    return /^[a-zA-Zéàè]{3,}$/.test(value);
+}
+
+function validAddress(value) {
+    return /^[a-zA-Z0-9" "]{3,}$/.test(value);
 }
 
 function validMail(value) {
     return /^[a-zA-Z0-9.:#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/.test(value);
+}
+
+//Form input controls
+function inputsControls() {
+    if (validText(formName.value) === false) {
+        console.log("faux !");
+        formNameGroup.classList.add = ("has-error has-feedback");
+    } else {
+        console.log("Tout est OK !");
+        formNameGroup.classList.add = ("has-success has-feedback");
+    }
 }
 
 /*----->Function layout<-----*/
@@ -142,23 +166,23 @@ function getProductList() {
 /*----->Request<-----*/
 var toSend;
 
-function postCommand(toSend) {
-    fetch(api_2, {
+function postCommand(url, dataToSend) {
+    fetch(url, {
             method: 'POST',
-            body: toSend,
+            body: JSON.stringify(dataToSend),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then(function(response) {
             if (response.ok) {
-                console.log(response.order_ID)
-                return response.json
+                console.log(response.order_ID);
+                return response.json();
             }
         })
-        .catch(function(error) {
+        /*.catch(function(error) {
             console.log("Erreur lors de l'appel de la fonction" + error);
-        })
+        })*/
 
 }
 //Test other way
@@ -192,19 +216,10 @@ buttonDeleteBasket.addEventListener('click', function() {
     while (basketContent.firstChild) {
         basketContent.removeChild(basketContent.lastChild); //Clear basket page
     }
+    refreshNumberBasket();
     alert("Panier Vidé !");
 })
 
-//Button for delete just one product
-/*
-const buttonDeleteObject = document.getElementsByClassName("button_single_delete");
-
-buttonDeleteObject.addEventListener('click', function() {
-    console.log("poney")
-    console.log(buttonDeleteObject);
-    //const buttonDeleteObject_number = document.getElementsByClassName("button_delete_object" + i);
-})
-*/
 //Button "Commander" and form load
 buttonCommander.addEventListener('click', function() {
     basketForm.classList.remove("invisible");
@@ -213,49 +228,47 @@ buttonCommander.addEventListener('click', function() {
 })
 
 //Button send
-var basketProductsArray = [];
+//var basketProductsArray = [];
 
 buttonSend.addEventListener('click', function() {
-    if ((formName.value === '' || formFirstName.value === '' || formAddress.value === '' || formCity.value === '' || formMail.value === '')) {
-        alert("Merci de remplir tous les champs");
-    } else if (validText(formName.value) === false || validText(formFirstName.value) === false || validText(formAddress.value) === false || validText(formCity.value) === false || validMail(formMail.value) === false) {
-        alert("Merci de remplir correctement tous les champs");
-    } else if (basketTeddiesArray.length === 0) {
-        alert("Merci d'ajouter des oursons au panier");
-    } else {
+
+        /*if ((formName.value === '' || formFirstName.value === '' || formAddress.value === '' || formCity.value === '' || formMail.value === '')) {
+            alert("Merci de remplir tous les champs");
+        } else if (validText(formName.value) === false || validText(formFirstName.value) === false || validAddress(formAddress.value) === false || validText(formCity.value) === false || validMail(formMail.value) === false) {
+            inputsControls();
+            console.log("Le nom respecte le format : " + validText(formName.value));
+            console.log("Le prénom respecte le format : " + validText(formFirstName.value));
+            console.log("L'adresse respecte le format : " + validAddress(formAddress.value));
+            console.log("La ville respecte le format : " + validText(formCity.value));
+            console.log("L'email respecte le format : " + validMail(formMail.value));
+            alert("Merci de remplir correctement les champs");
+        } else if (basketTeddiesArray.length === 0) {
+            alert("Merci d'ajouter des oursons au panier");
+        } else {*/
         //Creation of the array of product as string
+        let products = [];
         for (let i = 0; i < basketTeddiesArray.length; i++) {
-            basketProductsArray.push(basketTeddiesArray[i].ID);
+            products.push(basketTeddiesArray[i].ID);
         }
-        var products = basketProductsArray;
+
         console.log(products);
 
         // Creation of contact array
-        var contact = {
+        let contact = {
             firstName: formFirstName.value,
             lastName: formName.value,
             address: formAddress.value,
             city: formCity.value,
             email: formMail.value,
         }
-        var toSend = { contact, products };
-        sendPost(api_2, toSend) //Whithout Fetch
-            /*postCommand(toSend) //With Fetch*/
-            .then(function(response) {
-                window.location.href = './confirmation.html?orderId=' + response.orderId;
-            })
+        let toSend = { contact, products };
+        console.log(toSend);
+        //sendPost(api_2, toSend) //Whithout Fetch
+        postCommand(api_2, toSend) //With Fetch
+            /*.then(function(response) {
+                //Go to confirmation page
+                // window.location.href = './confirmation.html?orderId=' + response.orderId;
+            })*/
     }
-    console.log(toSend);
-
-
-
-})
-
-//Form input controls
-formName.addEventListener('change', function(event) {
-    if (validText(formName.value) === false) {
-        console.log("faux !");
-    } else {
-        console.log("c'est bon !");
-    }
-})
+    //}
+)

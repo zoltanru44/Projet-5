@@ -1,6 +1,5 @@
 let monPanier = document.getElementById("mon_panier");
-let basketTeddiesAdded_monPanier = localStorage.getItem("basketProducts");
-let basketTeddiesArray_monPanier = JSON.parse(basketTeddiesAdded_monPanier);
+
 
 
 //All buttons 
@@ -9,6 +8,8 @@ const buttonAddBasket_monPanier = document.getElementById("button_add_basket");
 
 //Display of number of articles
 function refreshNumberBasket() {
+    let basketTeddiesAdded_monPanier = localStorage.getItem("basketProducts");
+    let basketTeddiesArray_monPanier = JSON.parse(basketTeddiesAdded_monPanier);
     if (basketTeddiesArray_monPanier) {
         let numberOfbasketProducts = basketTeddiesArray_monPanier.length;
         monPanier.innerHTML = "Mon Panier (" + numberOfbasketProducts + ")";
@@ -18,11 +19,12 @@ function refreshNumberBasket() {
         console.log("Panier vide !");
     }
 }
+
 /*----->FUNCTION CALL<-----*/
 refreshNumberBasket()
 
 //Event
-if (buttonDeleteBasket_monPanier) {
+/*if (buttonDeleteBasket_monPanier) {
     buttonDeleteBasket_monPanier.addEventListener('click', function() {
         refreshNumberBasket();
     })
@@ -31,4 +33,4 @@ if (buttonAddBasket_monPanier) {
     buttonAddBasket_monPanier.addEventListener('click', function() {
         refreshNumberBasket();
     })
-}
+}*/
