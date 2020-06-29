@@ -11,41 +11,51 @@ const catalogue = document.getElementById("catalogue")
 
 
 
-//Function Add Picture
-function addPicture(section, dataTeddyPicture) {
+
+//Function Add Name, price, picture...
+function addProductCard(section, dataTeddyPicture, dataTeddyName, dataTeddyPrice, dataTeddy_id) {
+    //Add Section Col
+    const newSection = document.createElement("section");
+    section.appendChild(newSection);
+    newSection.className = "col-sm-4";
+    //Add section Card
+    const newSection_1 = document.createElement("section");
+    newSection.appendChild(newSection_1);
+    newSection_1.className = "catalogue__section__card card ";
+
+    //Add picture
     const newPicture = document.createElement("img");
-    section.appendChild(newPicture);
+    newSection_1.appendChild(newPicture);
     newPicture.setAttribute('src', dataTeddyPicture);
     newPicture.className = "catalogue__section__card__img card-img-top"
-    console.log(newPicture.className);
-}
-//Function Add Name and price
-function addNamePrice(section, dataTeddyName, dataTeddyPrice) {
+
+    //New div card-body
     const newDiv = document.createElement("div");
-    section.appendChild(newDiv);
+    newSection_1.appendChild(newDiv);
     newDiv.className = "catalogue__section__card__text card-body text-center";
+    //Add Name
     const newName = document.createElement("h3");
     newDiv.appendChild(newName);
     newName.innerHTML = dataTeddyName;
     newName.className = "catalogue__section__card__text__name product_name";
-    console.log(dataTeddyName);
+
     //Add price
     const newPrice = document.createElement("p");
     newDiv.appendChild(newPrice);
     dataTeddyPrice_format = dataTeddyPrice / 100
     newPrice.innerHTML = dataTeddyPrice_format.toPrecision(4) + " €";
     newPrice.className = "catalogue__section__card__text__price ";
-    console.log(dataTeddyPrice / 100);
-}
-//Function Add button with id link
-function addButtonId(section, dataTeddy_id) {
+
+    //Add button
     const newButton = document.createElement("a");
-    section.appendChild(newButton);
+    newDiv.appendChild(newButton);
     newButton.innerHTML = "Voir le produit";
     newButton.setAttribute('href', './product.html?id=' + dataTeddy_id);
-    newButton.className = "catalogue__section__card__btn btn-block badge";
+    newButton.className = "catalogue__section__card__btn btn btn-info";
+    newButton.setAttribute("type", "button");
     console.log(dataTeddy_id);
 }
+
 
 
 
@@ -68,17 +78,9 @@ function getAllTeddies() {
                 //Section Add
             for (let i = 0; i < data.length; i++) {
                 console.log(i)
-                    //new section
-                const newSection = document.createElement("section");
-                catalogue.appendChild(newSection);
-                newSection.className = "catalogue__section__card card col-sm-4";
-                console.log(newSection.className);
-                //Add Picture
-                addPicture(newSection, data[i].imageUrl);
-                //Add Name and price
-                addNamePrice(newSection, data[i].name, data[i].price);
-                //Add Button with id link
-                addButtonId(newSection, data[i]._id);
+                    //Add Product card
+                addProductCard(catalogue, data[i].imageUrl, data[i].name, data[i].price, data[i]._id);
+
             }
         })
         .catch(function(error) {

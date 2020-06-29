@@ -5,13 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta description="">
-    <title>Orinoco - Accueil</title>
+    <title>Orinoco - Produit</title>
 
     <link rel="stylesheet" href="./css/main.css" type="text/css">
 
     <!--bootstrap-->
     <link rel="stylesheet" type="text/css" href="./bootstrap-4.5.0-dist/css/bootstrap.min.css">
-    <script src="./bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+    <script src="./javascript/jquery-2.1.0.min.js" defer></script>
+    <script src="./bootstrap-4.5.0-dist/js/bootstrap.min.js" defer></script>
+
+
+    <script src="./javascript/basketNumber.js" defer></script>
+    <script src="./javascript/confirmation.js" defer></script>
+
+
 
     <link rel="stylesheet" href="./css/main.css" type="text/css">
 </head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="header__left" title="orinoco">
+            <img src="images/logo.png" alt="logo" class="header__left__logo">
+            <h1 class="header__left__brand">Orinoco</h1>
+        </a>
+        <div class="sm-col-4">
+            <a href="panier.html" class="header__right" id="mon_panier" title="panier">Mon Panier</a>
+            <a href="commands.html" class="header__right" id="mes_commandes" title="commandes">Mes Commandes</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="command_validation">
+            <h1>Commande validée</h1>
+            <p>Merci d'avoir commandé chez Orinoco, votre commande est à présent validée, vous revevrez rapidement un mail de confirmation.<br/> Pour information, votre commande n°
+                <span id="command_number"></span> est d'un montant de <span id="command_price"></span> €.<br/>Merci de la confiance que vous nous accordez ! </p>
+        </section>
+        <section>
+
+            <article id="historique">
+                <h2>Historique de vos commandes</h2>
+            </article>
+            <h2>Pour supprimer l'historique de vos commandes, cliquez sur le bouton ci-dessous</h2>
+            <button id="delete_order_list" type="button">Supprimer l'historique de mes commandes</button>
+        </section>
+    </main>
+</body>

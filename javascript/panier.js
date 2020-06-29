@@ -18,16 +18,21 @@ const basketForm = document.getElementById("basket_form");
 //Inputs form
 const formNameGroup = document.getElementById("form_name_group");
 const formName = document.getElementById("form_name");
+const formFirstNameGroup = document.getElementById("form_first_name_group");
 const formFirstName = document.getElementById("form_first_name");
+const formAddressGroup = document.getElementById("form_address_group");
 const formAddress = document.getElementById("form_address");
+const formCityGroup = document.getElementById("form_city_group");
 const formCity = document.getElementById("form_city");
+const formMailGroup = document.getElementById("form_mail_group");
 const formMail = document.getElementById("form_mail");
 
 //Local storage
-let basketTeddiesAdded = localStorage.getItem("basketProducts")
+let basketTeddiesAdded = localStorage.getItem("basketProducts");
 let basketTeddiesArray = JSON.parse(basketTeddiesAdded);
-let totalObjetsArray = []
+let totalObjetsArray = [];
 
+var definitiveTotalPrice;
 /*----->FUNCTIONS<-----*/
 /*----->Function for picture - description - price and delete<-----*/
 function addProductList_description(section, localDataTeddy, i) {
@@ -117,32 +122,102 @@ function totalCalculation(i) {
     let shippingPrice = 12;
     objectsPort.innerHTML = shippingPrice + " €";
     //Total
-    objectsTotal.innerHTML = totalCalculationPriceResult_form + shippingPrice + " €"
+    definitiveTotalPrice = totalCalculationPriceResult_form + shippingPrice;
+    objectsTotal.innerHTML = definitiveTotalPrice + " €";
 }
 
 /*----->Regex functions<-----*/
 function validText(value) {
-    return /^[a-zA-Zéàè]{3,}$/.test(value);
+    return /^[a-zA-Zéàèç" "]{3,}$/.test(value);
 }
 
 function validAddress(value) {
-    return /^[a-zA-Z0-9" "]{3,}$/.test(value);
+    return /^[a-zA-Z0-9éèäâùç" "]{3,}$/.test(value);
 }
 
 function validMail(value) {
     return /^[a-zA-Z0-9.:#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/.test(value);
 }
 
-//Form input controls
-function inputsControls() {
+
+/*----->Function to check form inputs<-----*/
+//Check form name
+function CheckName() {
     if (validText(formName.value) === false) {
-        console.log("faux !");
-        formNameGroup.classList.add = ("has-error has-feedback");
+        console.log("Nom faux !");
+        formName.classList.remove("is-valid");
+        formName.classList.add("is-invalid");
     } else {
-        console.log("Tout est OK !");
-        formNameGroup.classList.add = ("has-success has-feedback");
+        console.log("Nom OK !");
+        formName.classList.remove("is-invalid");
+        formName.classList.add("is-valid");
     }
 }
+//Check form first name
+function CheckFirstName() {
+    if (validText(formFirstName.value) === false) {
+        console.log("Prénom faux !");
+        formFirstName.classList.remove("is-valid");
+        formFirstName.classList.add("is-invalid");
+    } else {
+        console.log("Prénom OK !");
+        formFirstName.classList.remove("is-invalid");
+        formFirstName.classList.add("is-valid");
+    }
+}
+//Check form name
+function CheckAdress() {
+    if (validAddress(formAddress.value) === false) {
+        console.log("Adresse faux !");
+        formAddress.classList.remove("is-valid");
+        formAddress.classList.add("is-invalid");
+    } else {
+        console.log("Adresse OK !");
+        formAddress.classList.remove("is-invalid");
+        formAddress.classList.add("is-valid");
+    }
+}
+//Check form City
+function CheckCity() {
+    if (validAddress(formCity.value) === false) {
+        console.log("Ville faux !");
+        formCity.classList.remove("is-valid");
+        formCity.classList.add("is-invalid");
+    } else {
+        console.log("Ville OK !");
+        formCity.classList.remove("is-invalid");
+        formCity.classList.add("is-valid");
+    }
+}
+//Check form Mail
+function CheckMail() {
+    if (validMail(formMail.value) === false) {
+        console.log("Mail faux !");
+        formMail.classList.remove("is-valid");
+        formMail.classList.add("is-invalid");
+    } else {
+        console.log("Mail OK !");
+        formMail.classList.remove("is-invalid");
+        formMail.classList.add("is-valid");
+    }
+}
+
+//Live check controls
+formNameGroup.addEventListener("input", function() {
+    CheckName();
+});
+formFirstNameGroup.addEventListener("input", function() {
+    CheckFirstName();
+});
+formAddressGroup.addEventListener("input", function() {
+    CheckAdress();
+});
+formCityGroup.addEventListener("input", function() {
+    CheckCity();
+});
+formMailGroup.addEventListener("input", function() {
+    CheckMail();
+});
 
 /*----->Function layout<-----*/
 function getProductList() {
@@ -163,47 +238,47 @@ function getProductList() {
     }
 }
 
+/*----->Function go to confirmation page and save orders in local storage<-----*/
+function openConfirmationPage(orderID, totalPrice) {
+
+    let confirmationInformations = {
+        confirmationNumber: orderID,
+        totalPrice: totalPrice,
+    }
+    const orderAdded = localStorage.getItem("orders")
+    if (orderAdded) {
+        orderArray = JSON.parse(orderAdded);
+        orderArray.push(confirmationInformations);
+        localStorage.setItem('orders', JSON.stringify(orderArray));
+    } else {
+        orderArray = [];
+        orderArray.push(confirmationInformations);
+        localStorage.setItem('orders', JSON.stringify(orderArray));
+    }
+    console.log(localStorage.getItem("orders"));
+    window.location.href = './confirmation.html?orderId=' + orderID;
+}
+
 /*----->Request<-----*/
 var toSend;
 
-function postCommand(url, dataToSend) {
-    fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(dataToSend),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(function(response) {
-            if (response.ok) {
-                console.log(response.order_ID);
-                return response.json();
-            }
-        })
-        /*.catch(function(error) {
-            console.log("Erreur lors de l'appel de la fonction" + error);
-        })*/
-
+const postCommand = async(url, dataToSend) => {
+    const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(dataToSend),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    if (response.ok) {
+        console.log("Envoi des données réussi");
+        return await response.json();
+    } else {
+        console.log("Erreur lors de l'envoi des données : " + error);
+    }
 }
-//Test other way
-function sendPost(url, toSend) {
-    return new Promise((resolve, reject) => {
-        let recovHttp = new XMLHttpRequest();
-        recovHttp.open('POST', url);
-        recovHttp.setRequestHeader('content-type', 'application/json');
-        recovHttp.send(JSON.stringify(toSend));
-        recovHttp.onreadystatechange = function() {
-            if (this.readyState === XMLHttpRequest.DONE) {
-                if (this.status >= 200 && this.status <= 300) {
-                    resolve(JSON.parse(this.responseText));
-                } else {
-                    reject('encore une erreur');
-                }
-            }
 
-        }
-    });
-}
+
 
 /*----->FUNCTION CALL<-----*/
 getProductList();
@@ -211,7 +286,7 @@ getProductList();
 /*----->EVENT<-----*/
 //Button for delete all the basket
 buttonDeleteBasket.addEventListener('click', function() {
-    localStorage.clear("basketProducts") //Clear the local storage
+    localStorage.removeItem("basketProducts") //Clear the local storage
 
     while (basketContent.firstChild) {
         basketContent.removeChild(basketContent.lastChild); //Clear basket page
@@ -230,29 +305,26 @@ buttonCommander.addEventListener('click', function() {
 //Button send
 //var basketProductsArray = [];
 
-buttonSend.addEventListener('click', function() {
+buttonSend.addEventListener('click', async(event) => {
 
-        /*if ((formName.value === '' || formFirstName.value === '' || formAddress.value === '' || formCity.value === '' || formMail.value === '')) {
-            alert("Merci de remplir tous les champs");
-        } else if (validText(formName.value) === false || validText(formFirstName.value) === false || validAddress(formAddress.value) === false || validText(formCity.value) === false || validMail(formMail.value) === false) {
-            inputsControls();
-            console.log("Le nom respecte le format : " + validText(formName.value));
-            console.log("Le prénom respecte le format : " + validText(formFirstName.value));
-            console.log("L'adresse respecte le format : " + validAddress(formAddress.value));
-            console.log("La ville respecte le format : " + validText(formCity.value));
-            console.log("L'email respecte le format : " + validMail(formMail.value));
-            alert("Merci de remplir correctement les champs");
-        } else if (basketTeddiesArray.length === 0) {
-            alert("Merci d'ajouter des oursons au panier");
-        } else {*/
+    if ((formName.value === '' || formFirstName.value === '' || formAddress.value === '' || formCity.value === '' || formMail.value === '')) {
+        //
+    } else if (validText(formName.value) === false || validText(formFirstName.value) === false || validAddress(formAddress.value) === false || validText(formCity.value) === false || validMail(formMail.value) === false) {
+        inputsControls();
+        console.log("Le nom respecte le format : " + validText(formName.value));
+        console.log("Le prénom respecte le format : " + validText(formFirstName.value));
+        console.log("L'adresse respecte le format : " + validAddress(formAddress.value));
+        console.log("La ville respecte le format : " + validText(formCity.value));
+        console.log("L'email respecte le format : " + validMail(formMail.value));
+        alert("Merci de remplir correctement les champs");
+    } else if (basketTeddiesArray.length === 0) {
+        alert("Merci d'ajouter des oursons au panier");
+    } else {
         //Creation of the array of product as string
         let products = [];
         for (let i = 0; i < basketTeddiesArray.length; i++) {
             products.push(basketTeddiesArray[i].ID);
         }
-
-        console.log(typeof basketTeddiesArray[1].ID);
-
         // Creation of contact array
         let contact = {
             firstName: formFirstName.value,
@@ -263,12 +335,20 @@ buttonSend.addEventListener('click', function() {
         }
         let toSend = { contact, products };
         console.log(toSend);
-        //sendPost(api_2, toSend) //Whithout Fetch
-        postCommand(api_2, toSend) //With Fetch
-            /*.then(function(response) {
-                //Go to confirmation page
-                // window.location.href = './confirmation.html?orderId=' + response.orderId;
-            })*/
+        const response = await postCommand(api_2, toSend);
+        if (response) {
+            console.log(response.orderId);
+            console.log(definitiveTotalPrice);
+            openConfirmationPage(response.orderId, definitiveTotalPrice);
+        }
+
+        //urlConfirmationPage, orderID, totalPrice, objectsNumber) localDataTeddy_number
+
+
+
+        /*.then(function(response) {
+            //Go to confirmation page
+            // window.location.href = './confirmation.html?orderId=' + response.orderId;
+        })*/
     }
-    //}
-)
+})

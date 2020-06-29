@@ -130,10 +130,8 @@ body {
   width: 100%;
 }
 
-.catalogue__section__card__img {
-  height: 220px;
-  width: auto;
-  margin: 5px;
+.catalogue__section__card {
+  border-radius: 2%;
 }
 
 .catalogue__section__card__text {
@@ -150,21 +148,17 @@ body {
 
 .catalogue__section__card__btn {
   margin-bottom: 10px;
-  border-radius: 10px;
-  height: 30px;
-  background-color: #d3ab91;
-  -webkit-transition-duration: 300ms;
-          transition-duration: 300ms;
-  padding: auto;
-  font-size: 1em;
-  font-weight: normal;
-  -webkit-box-shadow: 2px 2px 2px #6d452b;
-          box-shadow: 2px 2px 2px #6d452b;
-}
-
-.catalogue__section__card__btn:hover {
-  background-color: #c48f6d;
-  color: white;
+  /*border-radius: 10px;
+            height: 30px;
+            background-color: $clr_secondary;
+            transition-duration: 300ms;
+            padding: auto;
+            font-size: 1em;
+            font-weight: normal;
+            box-shadow: 2px 2px 2px darken($color: $clr_secondary, $amount: 40);
+            &:hover {
+                background-color: darken($color: $clr_secondary, $amount: 10);
+                color: white;*/
 }
 
 /*MAIN END*/

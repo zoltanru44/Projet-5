@@ -22,13 +22,16 @@
 </head>
 </head>
 
-<body>
-    <header class="header">
+<body class="container">
+    <header class="header row">
         <a href="index.html" class="header__left" title="orinoco">
             <img src="images/logo.png" alt="logo" class="header__left__logo">
             <h1 class="header__left__brand">Orinoco</h1>
         </a>
-        <a href="panier.html" class="header__right" id="mon_panier" title="panier">Mon Panier</a>
+        <div class="sm-col-4">
+            <a href="panier.html" class="header__right" id="mon_panier" title="panier">Mon Panier</a>
+            <a href="commands.html" class="header__right" id="mes_commandes" title="commandes">Mes Commandes</a>
+        </div>
     </header>
 
     <main class="panier_main row">
@@ -69,39 +72,39 @@
         </aside>
         <!--form-->
         <section>
-            <div class="panier_main__aside__form invisible" id="basket_form">
+            <form class="panier_main__aside__form invisible" id="basket_form">
                 <!--name-->
-                <div class="panier_main__aside__form__content input-group form-group has-feedback" id="form_name_group">
+                <div class="panier_main__aside__form__content input-group form-group" id="form_name_group">
                     <label for="form_name" class="panier_main__aside__form__label input-group-text">Nom</label>
                     <input type="text" class="panier_main__aside__form__input form-control" placeholder="DUPONT" id="form_name" required>
                 </div>
                 <!--first name-->
-                <div class="panier_main__aside__form__content input-group form-group has-feedback" id="form_first_name_group">
+                <div class="panier_main__aside__form__content input-group form-group" id="form_first_name_group">
                     <label for="form_first_name" class="panier_main__aside__form__label input-group-text">Prénom</label>
                     <input type="text" class="panier_main__aside__form__input form-control" placeholder="José" id="form_first_name" required>
                 </div>
 
                 <!--adress-->
-                <div class="panier_main__aside__form__address__content input-group form-group has-feedback" id="form_first_name_group">
+                <div class="panier_main__aside__form__address__content input-group form-group" id="form_address_group">
                     <label for="form_address" class="panier_main__aside__form__label input-group-text">Adresse</label>
                     <input type="text" class="panier_main__aside__form__input form-control" placeholder="20 route de la Garenne" id="form_address" required>
                 </div>
 
                 <!--city-->
-                <div class="panier_main__aside__form__content input-group form-group has-feedback" id="form_city_group">
+                <div class="panier_main__aside__form__content input-group form-group" id="form_city_group">
                     <label for="form_city" class="panier_main__aside__form__first__text input-group-text">Ville</label>
                     <input type="text" class="panier_main__aside__form__input form-control" placeholder="Paris" id="form_city" required>
                 </div>
 
                 <!--email-->
-                <div class="panier_main__aside__form__content input-group form-group has-feedback" id="form_mail_group">
+                <div class="panier_main__aside__form__content input-group form-group" id="form_mail_group">
                     <label for="form_mail" class="panier_main__aside__form__first__text input-group-text">Email</label>
                     <input type="email" class="panier_main__aside__form__input form-control" placeholder="jose.dupont@orimail.com" id="form_mail" required>
                 </div>
 
 
                 <button id="button_send" type="button" class="btn btn-success">Valider ma commande</button>
-            </div>
+            </form>
         </section>
 
     </main>

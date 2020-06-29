@@ -11,7 +11,7 @@ function refreshNumberBasket() {
     let basketTeddiesAdded_monPanier = localStorage.getItem("basketProducts");
     let basketTeddiesArray_monPanier = JSON.parse(basketTeddiesAdded_monPanier);
     if (basketTeddiesArray_monPanier) {
-        let numberOfbasketProducts = basketTeddiesArray_monPanier.length;
+        var numberOfbasketProducts = basketTeddiesArray_monPanier.length;
         monPanier.innerHTML = "Mon Panier (" + numberOfbasketProducts + ")";
         console.log(numberOfbasketProducts + " produit dans le panier");
     } else {
