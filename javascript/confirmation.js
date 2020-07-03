@@ -1,8 +1,8 @@
 /*----->CONSTANTS<-----*/
 const commandNumber = document.getElementById("command_number");
 const commandPrice = document.getElementById("command_price");
-const buttonDeleteOrderList = document.getElementById("delete_order_list");
-const historique = document.getElementById("historique");
+
+const historic = document.getElementById("historic");
 const commandValidation = document.getElementById("command_validation");
 const winLocation = window.location.search; //Get location.search
 
@@ -30,12 +30,12 @@ function getOrders() {
         for (let i = 0; i < orderAddedArray.length; i++) {
             console.log(i);
             if (orderAdded != null) {
-                addHistory(orderAddedArray[i].confirmationNumber, orderAddedArray[i].totalPrice);
+                addHistory(historic, orderAddedArray[i].confirmationNumber, orderAddedArray[i].totalPrice);
                 //To get current order
                 if (orderAddedArray[i].confirmationNumber === winLocation_ID) {
                     var orderId = orderAddedArray[i].confirmationNumber;
                     var totalPrice = orderAddedArray[i].totalPrice;
-                    console.log("numéro de la commande effectuée " + orderId);
+                    console.log(" numéro de la commande effectuée " + orderId);
                     numberArray = i;
                     return numberArray;
                 }
@@ -50,20 +50,12 @@ function getOrders() {
     }
 }
 //Function to create row for historique
-function addHistory(orderID, totalPrice) {
-    //Create DIV row
-    let newTab = document.createElement("div")
-    historique.appendChild(newTab);
-    newTab.className = "row";
-    //Create number order
-    let newOrderID = document.createElement("p");
-    newTab.appendChild(newOrderID);
-    newOrderID.innerHTML = "Commande n° " + orderID + " ";
-    //Create total price
-    let newTotalPrice = document.createElement("p");
-    newTab.appendChild(newTotalPrice);
-    newTotalPrice.innerHTML = "pour un total de " + totalPrice + " €";
-
+function addHistory(section, orderID, totalPrice) {
+    //Create Li
+    let newTab = document.createElement("li")
+    section.appendChild(newTab);
+    newTab.className = "list-group-item list-group-item-dark";
+    newTab.innerHTML = "Commande n° " + orderID + " pour un total de " + totalPrice + " €";
 }
 //function for get and display orderID and total price
 function displayOrderPrice(orderID, totalPrice) {
@@ -89,9 +81,3 @@ if (winLocation_ID != undefined) {
     console.log(totalPrice);
     displayOrderPrice(orderId, totalPrice);
 }
-
-
-buttonDeleteOrderList.addEventListener('click', function() {
-    localStorage.removeItem("orders");
-    window.location.href = './confirmation.html';
-})

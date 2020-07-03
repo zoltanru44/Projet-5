@@ -21,22 +21,28 @@
     <link rel="stylesheet" href="./css/main.css" type="text/css">
 </head>
 
-<body>
+<body class="container">
     <header class="header">
         <a href="index.html" class="header__left" title="orinoco">
             <img src="images/logo.png" alt="logo" class="header__left__logo">
             <h1 class="header__left__brand">Orinoco</h1>
         </a>
-        <div class="sm-col-4">
-            <a href="panier.html" class="header__right" id="mon_panier" title="panier">Mon Panier</a>
-            <a href="commands.html" class="header__right" id="mes_commandes" title="commandes">Mes Commandes</a>
-        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link" id="mon_catalogue" title="catalogue">Catalogue</a>
+            </li>
+            <li class="nav-item">
+                <a href="panier.html" class="nav-link" id="mon_panier" title="panier">Mon Panier</a>
+            </li>
+            <li class="nav-item">
+                <a href="commands.html" class="nav-link" id="mes_commandes" title="commandes">Mes Commandes</a>
+            </li>
     </header>
     <main class="container">
-        <div class="row">
-            <h2 class="main__title col-sm-12">Tous nos articles</h2>
+        <div class="row justify-content-center ">
+            <h2 class="main__title col-sm-12 text-center">Tous nos articles</h2>
             <!--1st teddy-->
-            <div id="catalogue" class="catalogue row">
+            <div id="catalogue" class="catalogue row align-middle">
 
             </div>
 

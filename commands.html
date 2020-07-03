@@ -22,19 +22,33 @@
 </head>
 </head>
 
-<body>
+<body class="container">
     <header class="header">
         <a href="index.html" class="header__left" title="orinoco">
             <img src="images/logo.png" alt="logo" class="header__left__logo">
             <h1 class="header__left__brand">Orinoco</h1>
         </a>
-        <div class="sm-col-4">
-            <a href="panier.html" class="header__right" id="mon_panier" title="panier">Mon Panier</a>
-            <a href="commands.html" class="header__right" id="mes_commandes" title="commandes">Mes Commandes</a>
-        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link" id="mon_catalogue" title="catalogue">Catalogue</a>
+            </li>
+            <li class="nav-item">
+                <a href="panier.html" class="nav-link" id="mon_panier" title="panier">Mon Panier</a>
+            </li>
+            <li class="nav-item">
+                <a href="commands.html" class="nav-link" id="mes_commandes" title="commandes">Mes Commandes</a>
+            </li>
     </header>
-    <main id="history">
+    <section class="container text-center">
+        <ul id="history" class="list-group m-3">
+            <!--Add JS historic-->
+        </ul>
+        <div id="delete_order_div" class="m-3">
+            <h3>Pour supprimer l'historique de vos commandes, cliquez sur le bouton ci-dessous</h2>
+                <button id="delete_order_list" type="button" class="btn btn-warning">Supprimer l'historique de mes commandes</button>
+        </div>
 
 
-    </main>
+
+    </section>
 </body>

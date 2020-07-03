@@ -5,3 +5,9 @@
         @content;
     }
 }
+
+@mixin responsive_tablet_smartphone_size {
+    @media screen and (max-width: $media_size_tablet) {
+        @content;
+    }
+}

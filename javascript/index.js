@@ -17,11 +17,11 @@ function addProductCard(section, dataTeddyPicture, dataTeddyName, dataTeddyPrice
     //Add Section Col
     const newSection = document.createElement("section");
     section.appendChild(newSection);
-    newSection.className = "col-sm-4";
+    newSection.className = "col-sm-6 col-md-4 mb-2";
     //Add section Card
     const newSection_1 = document.createElement("section");
     newSection.appendChild(newSection_1);
-    newSection_1.className = "catalogue__section__card card ";
+    newSection_1.className = "catalogue__section__card card h-100 bg-light border-secondary";
 
     //Add picture
     const newPicture = document.createElement("img");

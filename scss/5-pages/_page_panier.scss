@@ -1,5 +1,19 @@
+body {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
 .panier_main {
+    @include responsive_tablet_smartphone_size {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     &__section {
+        @include responsive_tablet_smartphone_size {
+            width: 90%;
+        }
         &__head {
             font-size: 1em;
             display: flex;
@@ -20,17 +34,40 @@
             }
         }
         &__basket {
+            &__li {
+                text-align: left;
+                @include responsive_mobile_size {
+                    text-align: center;
+                }
+            }
             &__name {
                 font-size: 1.2em;
             }
             &__product {
+                &__div {
+                    @include responsive_mobile_size {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: auto;
+                    }
+                }
                 &__img {
-                    width: 150px;
+                    width: auto;
+                    height: 100%;
+                    @include responsive_mobile_size {
+                        width: auto;
+                        height: 50%;
+                        margin: auto;
+                    }
                 }
             }
         }
     }
     &__aside {
+        @include responsive_tablet_smartphone_size {
+            width: 90%;
+        }
         &__resume {
             &__div_articles {
                 display: flex;

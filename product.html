@@ -22,50 +22,64 @@
     <link rel="stylesheet" href="./css/main.css" type="text/css">
 </head>
 
-<body>
+<body class="container">
     <header class="header">
         <a href="index.html" class="header__left" title="orinoco">
             <img src="images/logo.png" alt="logo" class="header__left__logo">
             <h1 class="header__left__brand">Orinoco</h1>
         </a>
-        <div class="sm-col-4">
-            <a href="panier.html" class="header__right" id="mon_panier" title="panier">Mon Panier</a>
-            <a href="commands.html" class="header__right" id="mes_commandes" title="commandes">Mes Commandes</a>
-        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link" id="mon_catalogue" title="catalogue">Catalogue</a>
+            </li>
+            <li class="nav-item">
+                <a href="panier.html" class="nav-link" id="mon_panier" title="panier">Mon Panier</a>
+            </li>
+            <li class="nav-item">
+                <a href="commands.html" class="nav-link" id="mes_commandes" title="commandes">Mes Commandes</a>
+            </li>
+            </div>
     </header>
 
-    <main class="conteneur">
+    <main class="container">
         <section class="row">
-            <div class="col-sm-6" id="left_bloc">
-                <a href="index/html" class="left_bloc__return">Retour au catalogue</a>
+            <div class="col-md-6" id="left_bloc">
+                <a href="index.html" class="left_bloc__return btn btn-outline-secondary m-2">Retour au catalogue</a>
                 <h2 class="left_bloc__basketProducts">Produit</h2>
                 <!--<img src="./images/teddy_1.jpg" alt="teddy picture" class="img-fluid">
                 <h1 class="text-center js_modified">Nom nounours</h1>-->
             </div>
-            <div class="col-sm-6" id="right_bloc">
+            <div class="col-md-6 mt-5" id="right_bloc">
                 <div class="right_bloc__description col-sm-12">
                     <h3 class="right_bloc__description_h3">Description</h3>
-                    <p id="teddy_description"></p>
+                    <p id="teddy_description">
+                        <!--Add JS description-->
+                    </p>
                 </div>
-                <div class="row ">
-                    <div class="col-sm-4">
-                        <h3 class="right_bloc__options">Option</h3>
-                        <div class="right_bloc__options_list">
-                            <select class="right_bloc__options_list" id="options_list">
-                            </select>
+                <section>
+                    <div>
+                        <form class="form-row ">
+                            <div class="col-sm-6 form-group">
+                                <label for="options_list" class="right_bloc__options">Option</label>
+                                <select class="right_bloc__options_list form-control" id="options_list">
+                                </select>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="input_number_product">Quantité</label>
+                                <input id="input_number_product" type="number" value="1" class=" form-control">
+                            </div>
+                        </form>
+                        <div class="col-sm-6 mx-auto text-center" id="product_price">
+                            <h3>Prix</h3>
+                            <!--Add JS Price-->
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h3>Quantité</h3>
-                        <div class="row">
-                            <input id="input_number_product" type="number" value="1" class="col-sm-4">
+                        <div id="button_add_div" class="col-sm-6 mx-auto">
+                            <button type="button" class="article__card__btn btn-block  btn btn-success " id="button_add_basket">Ajouter au panier</button>
+                            <!--Add JS text after validation-->
                         </div>
+
                     </div>
-                    <div class="col-sm-4" id="product_price">
-                        <h3>Prix</h3>
-                    </div>
-                    <button type="button" class="article__card__btn btn-block col-sm-6" id="button_add_basket">Ajouter au panier</button>
-                </div>
+                </section>
         </section>
 
     </main>

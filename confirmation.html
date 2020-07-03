@@ -23,31 +23,34 @@
     <link rel="stylesheet" href="./css/main.css" type="text/css">
 </head>
 
-<body>
+<body class="container">
     <header class="header">
         <a href="index.html" class="header__left" title="orinoco">
             <img src="images/logo.png" alt="logo" class="header__left__logo">
             <h1 class="header__left__brand">Orinoco</h1>
         </a>
-        <div class="sm-col-4">
-            <a href="panier.html" class="header__right" id="mon_panier" title="panier">Mon Panier</a>
-            <a href="commands.html" class="header__right" id="mes_commandes" title="commandes">Mes Commandes</a>
-        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link" id="mon_catalogue" title="catalogue">Catalogue</a>
+            </li>
+            <li class="nav-item">
+                <a href="panier.html" class="nav-link" id="mon_panier" title="panier">Mon Panier</a>
+            </li>
+            <li class="nav-item">
+                <a href="commands.html" class="nav-link" id="mes_commandes" title="commandes">Mes Commandes</a>
+            </li>
     </header>
 
     <main>
-        <section id="command_validation">
+        <section class="container text-center" id="command_validation">
             <h1>Commande validée</h1>
             <p>Merci d'avoir commandé chez Orinoco, votre commande est à présent validée, vous revevrez rapidement un mail de confirmation.<br/> Pour information, votre commande n°
                 <span id="command_number"></span> est d'un montant de <span id="command_price"></span> €.<br/>Merci de la confiance que vous nous accordez ! </p>
         </section>
-        <section>
-
-            <article id="historique">
-                <h2>Historique de vos commandes</h2>
-            </article>
-            <h2>Pour supprimer l'historique de vos commandes, cliquez sur le bouton ci-dessous</h2>
-            <button id="delete_order_list" type="button">Supprimer l'historique de mes commandes</button>
+        <section class="container text-center">
+            <h2>Historique de vos commandes</h2>
+            <ul id="historic" class="m-2"></ul>
+            <!--Add JS historic-->
         </section>
     </main>
 </body>

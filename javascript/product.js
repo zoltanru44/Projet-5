@@ -12,6 +12,7 @@ var productPrice = document.getElementById("product_price");
 var productNumber = document.getElementById("input_number_product");
 var basketProducts = [];
 const buttonAddBasket = document.getElementById("button_add_basket");
+const buttonAddDiv = document.getElementById("button_add_div");
 
 
 /*------>FUNCTIONS<------*/
@@ -61,6 +62,37 @@ function addPrice(section, dataTeddyPrice) {
     section.appendChild(newPrice);
     dataTeddyPrice_format = dataTeddyPrice / 100
     newPrice.innerHTML = dataTeddyPrice_format.toPrecision(4) + " €";
+
+}
+//Function to create message after add product
+function textMessageAdd(section, basketValue, value, name) {
+    let child = document.getElementById("textMessageAdd");
+    if (child) { //Delete old message
+        console.log(child);
+        let oldChild = section.removeChild(child);
+    }
+    let infoTextAdd = document.createElement("p");
+    section.appendChild(infoTextAdd);
+    infoTextAdd.setAttribute("id", "textMessageAdd");
+    infoTextAdd.className = "text-center alert-success";
+    if (basketValue != 1) {
+        infoTextAdd.innerHTML = value + " nounours " + name + " ont bien été ajoutés au panier !"
+    } else {
+        infoTextAdd.innerHTML = value + " nounours " + name + " a bien été ajouté au panier !"
+    }
+}
+
+function textMessageAlertNumber(section) {
+    let child = document.getElementById("textMessageAdd");
+    if (child) { //Delete old message
+        console.log(child);
+        let oldChild = section.removeChild(child);
+    }
+    let infoTextAlert = document.createElement("p");
+    section.appendChild(infoTextAlert);
+    infoTextAlert.setAttribute("id", "textMessageAdd");
+    infoTextAlert.className = "text-center alert-danger";
+    infoTextAlert.innerHTML = "Merci d'ajouter une quantité valide"
 }
 
 
@@ -96,7 +128,7 @@ function getAllTeddies() {
             //Click function create addTeddy
             buttonAddBasket.addEventListener('click', function() {
                 if (productNumber.value <= 0) {
-                    alert(" Merci d'ajouter une quantité valable");
+                    textMessageAlertNumber(buttonAddDiv);
                 } else {
                     let addTeddy = {
                         ID: data._id,
@@ -113,21 +145,14 @@ function getAllTeddies() {
                         teddiesArray = JSON.parse(teddiesAdded);
                         teddiesArray.push(addTeddy);
                         localStorage.setItem('basketProducts', JSON.stringify(teddiesArray));
-                        if (productNumber.value != 1) {
-                            alert(productNumber.value + " nounours " + data.name + " ont bien été ajoutés au panier !");
-                        } else {
-                            alert(productNumber.value + " nounours " + data.name + " a bien été ajouté au panier !");
-                        }
+                        textMessageAdd(buttonAddDiv, productNumber.value, productNumber.value, data.name)
+
 
                     } else {
                         teddiesArray = [];
                         teddiesArray.push(addTeddy);
                         localStorage.setItem('basketProducts', JSON.stringify(teddiesArray));
-                        if (productNumber.value != 1) {
-                            alert(productNumber.value + " nounours " + data.name + " ont bien été ajoutés au panier !");
-                        } else {
-                            alert(productNumber.value + " nounours " + data.name + " a bien été ajouté au panier !");
-                        }
+                        textMessageAdd(buttonAddDiv, productNumber.value, productNumber.value, data.name)
                     }
                     console.log(teddiesArray);
                     console.log(teddiesAdded);

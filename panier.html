@@ -22,56 +22,66 @@
 </head>
 </head>
 
-<body class="container">
+<body>
     <header class="header row">
         <a href="index.html" class="header__left" title="orinoco">
             <img src="images/logo.png" alt="logo" class="header__left__logo">
             <h1 class="header__left__brand">Orinoco</h1>
         </a>
-        <div class="sm-col-4">
-            <a href="panier.html" class="header__right" id="mon_panier" title="panier">Mon Panier</a>
-            <a href="commands.html" class="header__right" id="mes_commandes" title="commandes">Mes Commandes</a>
-        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link" id="mon_catalogue" title="catalogue">Catalogue</a>
+            </li>
+            <li class="nav-item">
+                <a href="panier.html" class="nav-link" id="mon_panier" title="panier">Mon Panier</a>
+            </li>
+            <li class="nav-item">
+                <a href="commands.html" class="nav-link" id="mes_commandes" title="commandes">Mes Commandes</a>
+            </li>
     </header>
 
-    <main class="panier_main row">
-        <section class="panier_main__section col-sm-9">
+    <main class="panier_main row ">
+        <section class="panier_main__section col-md-9">
             <div class="panier_main__section__head">
                 <h1 class="panier_main__section__head__title">Votre panier</h1>
-                <button type="button" class="btn btn-danger" id="button_delete_basket">Vider le panier</button>
+                <div id="button_delete_div">
+                    <button type="button" class="btn btn-danger" id="button_delete_basket">Vider le panier</button>
+                    <!--Add text delete confirmation JS-->
+                </div>
             </div>
-            <div class="panier_main__section__basket" id="basket_content">
-            </div>
+            <ul class="panier_main__section__basket list-group" id="basket_content">
+                <!--Add all products-->
+            </ul>
         </section>
-        <aside class="panier_main__aside col-sm-3">
-            <div class="panier_main__aside__resume container">
-                <h3 class="panier_main__aside__resume__total text-center">Total</h3>
+        <aside class="panier_main__aside col-md-3  mt-4 " id="basket_right_part">
+            <div class="panier_main__aside__resume container  text-center border border-secondary rounded">
+                <h3 class="panier_main__aside__resume__total">Total</h3>
                 <!--Nombre d'articles-->
-                <div class="panier_main__aside__resume__div_articles row">
+                <div class="panier_main__aside__resume__div_articles row px-2">
                     <p class="panier_main__aside__resume__div_articles__text">Nombre d'objets</p>
                     <div class="panier_main__aside__resume__div_articles__price" id="objects_number"></div>
                 </div>
                 <!--Sous-total-->
-                <div class="panier_main__aside__resume__div_price row">
+                <div class="panier_main__aside__resume__div_price row px-2">
                     <p class="panier_main__aside__resume__div_price__text">Sous-total</p>
                     <div class="panier_main__aside__resume__div_price__price" id="objects_price"></div>
                 </div>
                 <!--Livraison-->
-                <div class="panier_main__aside__resume__div_port row">
+                <div class="panier_main__aside__resume__div_port row px-2">
                     <p class="panier_main__aside__resume__div_port__text">Frais de port</p>
                     <div class="panier_main__aside__resume__div_port__price" id="objects_port"></div>
                 </div>
                 <!--Total-->
-                <div class="panier_main__aside__resume__div_total row">
+                <div class="panier_main__aside__resume__div_total row px-2">
                     <p class="panier_main__aside__resume__div_total__text">Total</p>
                     <div class="panier_main__aside__resume__div_total__price" id="objects_total"></div>
                 </div>
-                <button id="button_commander" type="button" class="btn btn-success">Valider mon panier</button>
+                <button id="button_commander" type="button" class="btn btn-success mb-2">Valider mon panier</button>
             </div>
 
         </aside>
         <!--form-->
-        <section>
+        <section class="col-sm-12 mt-3">
             <form class="panier_main__aside__form invisible" id="basket_form">
                 <!--name-->
                 <div class="panier_main__aside__form__content input-group form-group" id="form_name_group">
