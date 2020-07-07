@@ -53,10 +53,7 @@ body {
                     }
                 }
                 &__img {
-                    width: auto;
-                    height: 100%;
                     @include responsive_mobile_size {
-                        width: auto;
                         height: 50%;
                         margin: auto;
                     }

@@ -14,7 +14,6 @@ var basketProducts = [];
 const buttonAddBasket = document.getElementById("button_add_basket");
 const buttonAddDiv = document.getElementById("button_add_div");
 
-
 /*------>FUNCTIONS<------*/
 
 //Function to get the id without ?id=
@@ -62,7 +61,6 @@ function addPrice(section, dataTeddyPrice) {
     section.appendChild(newPrice);
     dataTeddyPrice_format = dataTeddyPrice / 100
     newPrice.innerHTML = dataTeddyPrice_format.toPrecision(4) + " €";
-
 }
 //Function to create message after add product
 function textMessageAdd(section, basketValue, value, name) {
@@ -95,7 +93,6 @@ function textMessageAlertNumber(section) {
     infoTextAlert.innerHTML = "Merci d'ajouter une quantité valide"
 }
 
-
 /*----->REQUEST>-----*/
 function getAllTeddies() {
     fetch(api_1 + winLocation_ID) //Requete de l'API
@@ -121,8 +118,6 @@ function getAllTeddies() {
             //Add price
             addPrice(productPrice, data.price);
 
-
-
             /*----->EVENT<-----*/
 
             //Click function create addTeddy
@@ -146,8 +141,6 @@ function getAllTeddies() {
                         teddiesArray.push(addTeddy);
                         localStorage.setItem('basketProducts', JSON.stringify(teddiesArray));
                         textMessageAdd(buttonAddDiv, productNumber.value, productNumber.value, data.name)
-
-
                     } else {
                         teddiesArray = [];
                         teddiesArray.push(addTeddy);
@@ -157,15 +150,12 @@ function getAllTeddies() {
                     console.log(teddiesArray);
                     console.log(teddiesAdded);
                     refreshNumberBasket();
-
                 }
             });
-
         })
-
-    /*.catch(function(error) {
-        console.log("Erreur lors de l'appel de la fonction " + error);
-    })*/
+        .catch(function(error) {
+            console.log("Erreur lors de l'appel de la fonction" + error);
+        })
 }
 
 /*----->Appel de la fonction<-----*/
@@ -174,10 +164,3 @@ getAllTeddies();
 
 console.log("ID de la page " + winLocation_ID);
 console.log("Adresse utilisée pour la requete " + api_1 + winLocation_ID);
-
-
-
-/*----->CONSTANT<-----*/
-
-
-/*----->FUNCTION<-----*/

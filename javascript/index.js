@@ -3,15 +3,10 @@ const api_1 = "http://localhost:3000/api/teddies"
 
 /*----->CONSTANTS<-----*/
 
-
 const catalogue = document.getElementById("catalogue")
 
 /*------>FUNCTION<------*/
 /*------>Création contenu cards<------*/
-
-
-
-
 //Function Add Name, price, picture...
 function addProductCard(section, dataTeddyPicture, dataTeddyName, dataTeddyPrice, dataTeddy_id) {
     //Add Section Col
@@ -55,14 +50,6 @@ function addProductCard(section, dataTeddyPicture, dataTeddyName, dataTeddyPrice
     newButton.setAttribute("type", "button");
     console.log(dataTeddy_id);
 }
-
-
-
-
-function consoleLog(data) {
-    console.log(data);
-}
-
 /*----->REQUEST>-----*/
 function getAllTeddies() {
     fetch(api_1) //Requete de l'API
@@ -80,7 +67,6 @@ function getAllTeddies() {
                 console.log(i)
                     //Add Product card
                 addProductCard(catalogue, data[i].imageUrl, data[i].name, data[i].price, data[i]._id);
-
             }
         })
         .catch(function(error) {

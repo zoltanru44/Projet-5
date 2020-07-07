@@ -28,19 +28,16 @@ function getUrl_Id() {
 function getOrders() {
     if (orderAddedArray) {
         for (let i = 0; i < orderAddedArray.length; i++) {
-            console.log(i);
+
             if (orderAdded != null) {
                 addHistory(historic, orderAddedArray[i].confirmationNumber, orderAddedArray[i].totalPrice);
                 //To get current order
                 if (orderAddedArray[i].confirmationNumber === winLocation_ID) {
-                    var orderId = orderAddedArray[i].confirmationNumber;
-                    var totalPrice = orderAddedArray[i].totalPrice;
+                    let orderId = orderAddedArray[i].confirmationNumber;
                     console.log(" numéro de la commande effectuée " + orderId);
                     numberArray = i;
                     return numberArray;
                 }
-
-
             } else {
                 alert("Vous n'avez passé aucune commande");
             }
@@ -68,16 +65,11 @@ function clearBasket() {
 }
 /*----->CALL<-----*/
 clearBasket();
-console.log(localStorage.getItem("basketProducts"));
-console.log(localStorage.getItem("orders"));
 refreshNumberBasket() //basketNumber.js
 getUrl_Id();
-console.log(winLocation_ID);
 if (winLocation_ID != undefined) {
     getOrders();
-    var orderId = orderAddedArray[numberArray].confirmationNumber;
-    var totalPrice = orderAddedArray[numberArray].totalPrice;
-    console.log(orderId);
-    console.log(totalPrice);
+    let orderId = orderAddedArray[numberArray].confirmationNumber;
+    let totalPrice = orderAddedArray[numberArray].totalPrice;
     displayOrderPrice(orderId, totalPrice);
 }

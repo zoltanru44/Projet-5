@@ -13,7 +13,7 @@ function textMessageNoHistoric(section) {
     section.appendChild(infoTextDelete);
     infoTextDelete.setAttribute("id", "textMessageDelete");
     infoTextDelete.className = "text-center alert-danger col-sm-6 mx-auto";
-    infoTextDelete.innerHTML = "Malheureusement, vous n'avez pas passé de commande récement"
+    infoTextDelete.innerHTML = "Malheureusement, vous n'avez pas passé de commande récemment"
 
 }
 //Function to get button invisible

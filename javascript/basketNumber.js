@@ -11,7 +11,7 @@ function refreshNumberBasket() {
     let basketTeddiesAdded_monPanier = localStorage.getItem("basketProducts");
     let basketTeddiesArray_monPanier = JSON.parse(basketTeddiesAdded_monPanier);
     if (basketTeddiesArray_monPanier) {
-        var numberOfbasketProducts = basketTeddiesArray_monPanier.length;
+        let numberOfbasketProducts = basketTeddiesArray_monPanier.length;
         monPanier.innerHTML = "Mon Panier (" + numberOfbasketProducts + ")";
         console.log(numberOfbasketProducts + " produit dans le panier");
     } else {
@@ -22,15 +22,3 @@ function refreshNumberBasket() {
 
 /*----->FUNCTION CALL<-----*/
 refreshNumberBasket()
-
-//Event
-/*if (buttonDeleteBasket_monPanier) {
-    buttonDeleteBasket_monPanier.addEventListener('click', function() {
-        refreshNumberBasket();
-    })
-}
-if (buttonAddBasket_monPanier) {
-    buttonAddBasket_monPanier.addEventListener('click', function() {
-        refreshNumberBasket();
-    })
-}*/
