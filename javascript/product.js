@@ -4,13 +4,13 @@ const api_1 = "http://localhost:3000/api/teddies/"
 /*----->CONSTANTS<-----*/
 const winLocation = window.location.search; //Get location.search
 let winLocation_ID;
-var leftBlock = document.getElementById("left_bloc");
-var rightBlock = document.getElementById("right_bloc");
-var teddyDescription = document.getElementById("teddy_description");
-var optionList = document.getElementById("options_list");
-var productPrice = document.getElementById("product_price");
-var productNumber = document.getElementById("input_number_product");
-var basketProducts = [];
+let leftBlock = document.getElementById("left_bloc");
+let rightBlock = document.getElementById("right_bloc");
+let teddyDescription = document.getElementById("teddy_description");
+let optionList = document.getElementById("options_list");
+let productPrice = document.getElementById("product_price");
+let productNumber = document.getElementById("input_number_product");
+let basketProducts = [];
 const buttonAddBasket = document.getElementById("button_add_basket");
 const buttonAddDiv = document.getElementById("button_add_div");
 
@@ -22,14 +22,12 @@ function getUrl_Id() {
     winLocation_ID = winLocation_ID_array[1]; //Get the part after "="
     return winLocation_ID;
 }
-
 //Function Add Picture
 function addPicture(section, dataTeddyPicture) {
     const newPicture = document.createElement("img");
     section.appendChild(newPicture);
     newPicture.setAttribute('src', dataTeddyPicture);
     newPicture.className = "img-fluid"
-    console.log("Adresse de l'image : " + newPicture.src);
 }
 //Function Add name
 function addName(section, dataTeddyName) {
@@ -37,13 +35,11 @@ function addName(section, dataTeddyName) {
     section.appendChild(newName);
     newName.innerHTML = dataTeddyName;
     newName.className = "text-center js_modified";
-    console.log("nom du nounours : " + dataTeddyName);
 }
 //Function Add description
 function addDescription(dataTeddyDescription) {
     teddyDescription.innerHTML = dataTeddyDescription;
     teddyDescription.className = "text-left";
-    console.log("description du nounours : " + dataTeddyDescription);
 }
 //Function options
 function addOptions(ulName, dataOption) {
@@ -66,8 +62,7 @@ function addPrice(section, dataTeddyPrice) {
 function textMessageAdd(section, basketValue, value, name) {
     let child = document.getElementById("textMessageAdd");
     if (child) { //Delete old message
-        console.log(child);
-        let oldChild = section.removeChild(child);
+        section.removeChild(child);
     }
     let infoTextAdd = document.createElement("p");
     section.appendChild(infoTextAdd);
@@ -83,8 +78,7 @@ function textMessageAdd(section, basketValue, value, name) {
 function textMessageAlertNumber(section) {
     let child = document.getElementById("textMessageAdd");
     if (child) { //Delete old message
-        console.log(child);
-        let oldChild = section.removeChild(child);
+        section.removeChild(child);
     }
     let infoTextAlert = document.createElement("p");
     section.appendChild(infoTextAlert);
@@ -98,13 +92,11 @@ function getAllTeddies() {
     fetch(api_1 + winLocation_ID) //Requete de l'API
         .then(function(response) {
             if (response.ok) {
-                console.log("Récupération des données de l'API OK");
                 //Fonction de réponse
                 return response.json() // Retourne la réponse en format JSON quand terminé
             }
         })
         .then(function(data) {
-            console.log(data);
             //left block Adds
             // Add picture
             addPicture(leftBlock, data.imageUrl);
@@ -134,7 +126,6 @@ function getAllTeddies() {
                         description: data.description,
                         number: productNumber.value,
                     }
-                    console.log(addTeddy);
                     const teddiesAdded = localStorage.getItem("basketProducts")
                     if (teddiesAdded) {
                         teddiesArray = JSON.parse(teddiesAdded);
@@ -147,8 +138,6 @@ function getAllTeddies() {
                         localStorage.setItem('basketProducts', JSON.stringify(teddiesArray));
                         textMessageAdd(buttonAddDiv, productNumber.value, productNumber.value, data.name)
                     }
-                    console.log(teddiesArray);
-                    console.log(teddiesAdded);
                     refreshNumberBasket();
                 }
             });
@@ -161,6 +150,3 @@ function getAllTeddies() {
 /*----->Appel de la fonction<-----*/
 getUrl_Id();
 getAllTeddies();
-
-console.log("ID de la page " + winLocation_ID);
-console.log("Adresse utilisée pour la requete " + api_1 + winLocation_ID);

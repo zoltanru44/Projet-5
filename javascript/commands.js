@@ -26,7 +26,6 @@ function buttonInvisible(button) {
 function getOrders() {
     if (orderAddedArray) {
         for (let i = 0; i < orderAddedArray.length; i++) {
-            console.log(i);
             if (orderAdded != null) {
                 addHistory(orderAddedArray[i].confirmationNumber, orderAddedArray[i].totalPrice);
             } else {
@@ -53,7 +52,6 @@ function addHistory(orderID, totalPrice) {
 /*-----
 /*----->CALL<-----*/
 getOrders();
-
 
 /*----->EVENTS<-----*/
 buttonDeleteOrderList.addEventListener('click', function() {

@@ -34,7 +34,7 @@ let basketTeddiesAdded = localStorage.getItem("basketProducts");
 let basketTeddiesArray = JSON.parse(basketTeddiesAdded);
 let totalObjetsArray = [];
 
-var definitiveTotalPrice;
+let definitiveTotalPrice;
 /*----->FUNCTIONS<-----*/
 /*----->Function for picture - description - price and delete<-----*/
 function addProductList_description(section, localDataTeddy, i) {
@@ -49,7 +49,6 @@ function addProductList_description(section, localDataTeddy, i) {
     newDiv.appendChild(newName);
     newName.className = "panier_main__section__basket__name";
     newName.innerHTML = localDataTeddy[i].name;
-    console.log(localDataTeddy[i].name);
 
     //-->Add div for picture - description - price and delete
     const newDiv_1 = document.createElement("div"); //Creation of div
@@ -98,13 +97,13 @@ function addProductList_description(section, localDataTeddy, i) {
     newNumber.innerHTML = "Nombre de nounours : " + localDataTeddy_number;
     newNumber.className = "panier_main__section__basket__product__div_number";
 
-    /*//DIV_1 ---> DIV_3 --> Add Button for delete object
+    //DIV_1 ---> DIV_3 --> Add Button for delete object
     const newButton = document.createElement("button");
     newDiv_3.appendChild(newButton);
     newButton.innerHTML = "Supprimer le produit";
     newButton.id = "button_delete_" + i;
     newButton.className = "btn btn-warning";
-    newButton.type = "button";*/
+    newButton.type = "button";
 }
 
 /*----->Function to display delete confirmation<-----*/
