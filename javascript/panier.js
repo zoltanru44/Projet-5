@@ -104,6 +104,16 @@ function addProductList_description(section, localDataTeddy, i) {
     newButton.id = "button_delete_" + i;
     newButton.className = "btn btn-warning";
     newButton.type = "button";
+    //Function for delete product button
+    newButton.addEventListener('click', function() {
+        let basketTeddiesNewArray = JSON.parse(localStorage.getItem("basketProducts"));
+        basketTeddiesNewArray.splice(i, 1);
+        localStorage.setItem('basketProducts', JSON.stringify(basketTeddiesNewArray));
+        section.removeChild(newDiv);
+        refreshNumberBasket();
+        document.location.reload(true);
+
+    })
 }
 
 /*----->Function to display delete confirmation<-----*/
@@ -111,13 +121,14 @@ function textMessageDeleteConfirmation(section) {
     let child = document.getElementById("textMessageDelete");
     if (child) { //Delete old message
         console.log(child);
-        let oldChild = section.removeChild(child);
+        section.removeChild(child);
     }
     let infoTextDelete = document.createElement("p");
     section.appendChild(infoTextDelete);
     infoTextDelete.setAttribute("id", "textMessageDelete");
     infoTextDelete.className = "text-center alert-danger col-sm-6 mx-auto";
     infoTextDelete.innerHTML = "Panier supprimé !"
+
 
 }
 /*----->Function to display No objects in the basket<-----*/
@@ -150,6 +161,8 @@ function totalCalculation(i) {
     objectsTotal.innerHTML = definitiveTotalPrice + " €";
 }
 
+
+
 /*----->Regex functions<-----*/
 function validText(value) {
     return /^[a-zA-Zéàèç" "]{3,}$/.test(value);
@@ -171,11 +184,6 @@ function insertErrorMessage(section, errortext) {
 }
 /*----->Function to create an alert message<-----*/
 function alertErrorText(section, message) {
-    /*let otherAlerts = document.querySelectorAll("alertError")
-    console.log(otherAlerts);
-    section.removeChild(otherAlerts);*/
-
-
     let alertMessage = document.createElement("div");
     section.appendChild(alertMessage);
     alertMessage.innerHTML = message;
@@ -265,7 +273,7 @@ formMailGroup.addEventListener("input", function() {
 
 /*----->Function layout<-----*/
 function getProductList() {
-    if (basketTeddiesArray) {
+    if (basketTeddiesArray.length != 0) {
         for (let i = 0; i < basketTeddiesArray.length; i++) { //Iteration for all basketProducts
             console.log(i);
             if (basketTeddiesAdded != null) { //If there is something in the basket
@@ -278,7 +286,6 @@ function getProductList() {
                 buttonDeleteBasket.classList.add("invisible");
             }
         }
-        console.log(basketTeddiesArray);
     } else {
         textMessageNoBasket(basketContent);
         basketRightPart.classList.add("invisible");
@@ -330,6 +337,7 @@ const postCommand = async(url, dataToSend) => {
 
 /*----->FUNCTION CALL<-----*/
 getProductList();
+
 
 /*----->EVENT<-----*/
 //Button for delete all the basket
