@@ -13,15 +13,13 @@ let winLocation_ID;
 let orderID;
 let numberArray;
 
-console.log(orderAdded);
-console.log(orderAddedArray);
+
 
 /*----->FUNCTIONS<-----*/
 //Function to get url ID
 function getUrl_Id() {
     const winLocationParameters = new URLSearchParams(winLocation);
     winLocation_ID = winLocationParameters.get('orderId');
-    console.log(winLocation_ID);
     return winLocation_ID;
 }
 
@@ -35,7 +33,6 @@ function getOrders() {
                 //To get current order
                 if (orderAddedArray[i].confirmationNumber === winLocation_ID) {
                     let orderId = orderAddedArray[i].confirmationNumber;
-                    console.log(" numéro de la commande effectuée " + orderId);
                     numberArray = i;
                     return numberArray;
                 }

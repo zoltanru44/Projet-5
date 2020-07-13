@@ -13,10 +13,8 @@ function refreshNumberBasket() {
     if (basketTeddiesArray_monPanier) {
         let numberOfbasketProducts = basketTeddiesArray_monPanier.length;
         monPanier.innerHTML = "Mon Panier (" + numberOfbasketProducts + ")";
-        console.log(numberOfbasketProducts + " produit dans le panier");
     } else {
         monPanier.innerHTML = "Mon Panier (0)";
-        console.log("Panier vide !");
     }
 }
 

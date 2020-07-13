@@ -110,12 +110,10 @@ function addProductList_description(section, localDataTeddy, i) {
         basketTeddiesArray.splice(i, 1);
         localStorage.setItem('basketProducts', JSON.stringify(basketTeddiesArray));
         section.removeChild(newDiv);
-        console.log(basketTeddiesArray.length);
         if (basketTeddiesArray.length <= 0) {
             localStorage.removeItem("basketProducts")
             basketTeddiesArray = JSON.parse(basketTeddiesAdded);
         }
-        console.log(basketTeddiesArray);
         refreshNumberBasket();
         document.location.reload(true);
 
@@ -126,7 +124,6 @@ function addProductList_description(section, localDataTeddy, i) {
 function textMessageDeleteConfirmation(section) {
     let child = document.getElementById("textMessageDelete");
     if (child) { //Delete old message
-        console.log(child);
         section.removeChild(child);
     }
     let infoTextDelete = document.createElement("p");
@@ -201,12 +198,10 @@ function alertErrorText(section, message) {
 //Check form name
 function CheckName() {
     if (validText(formName.value) === false) {
-        console.log("Nom faux !");
         formName.classList.remove("is-valid");
         formName.classList.add("is-invalid");
 
     } else {
-        console.log("Nom OK !");
         formName.classList.remove("is-invalid");
         formName.classList.add("is-valid");
     }
@@ -214,11 +209,9 @@ function CheckName() {
 //Check form first name
 function CheckFirstName() {
     if (validText(formFirstName.value) === false) {
-        console.log("Prénom faux !");
         formFirstName.classList.remove("is-valid");
         formFirstName.classList.add("is-invalid");
     } else {
-        console.log("Prénom OK !");
         formFirstName.classList.remove("is-invalid");
         formFirstName.classList.add("is-valid");
     }
@@ -226,11 +219,9 @@ function CheckFirstName() {
 //Check form adress
 function CheckAdress() {
     if (validAddress(formAddress.value) === false) {
-        console.log("Adresse faux !");
         formAddress.classList.remove("is-valid");
         formAddress.classList.add("is-invalid");
     } else {
-        console.log("Adresse OK !");
         formAddress.classList.remove("is-invalid");
         formAddress.classList.add("is-valid");
     }
@@ -238,11 +229,9 @@ function CheckAdress() {
 //Check form City
 function CheckCity() {
     if (validText(formCity.value) === false) {
-        console.log("Ville faux !");
         formCity.classList.remove("is-valid");
         formCity.classList.add("is-invalid");
     } else {
-        console.log("Ville OK !");
         formCity.classList.remove("is-invalid");
         formCity.classList.add("is-valid");
     }
@@ -250,11 +239,9 @@ function CheckCity() {
 //Check form Mail
 function CheckMail() {
     if (validMail(formMail.value) === false) {
-        console.log("Mail faux !");
         formMail.classList.remove("is-valid");
         formMail.classList.add("is-invalid");
     } else {
-        console.log("Mail OK !");
         formMail.classList.remove("is-invalid");
         formMail.classList.add("is-valid");
     }
@@ -279,7 +266,6 @@ formMailGroup.addEventListener("input", function() {
 
 /*----->Function layout<-----*/
 function getProductList() {
-    console.log(basketTeddiesArray);
     if (basketTeddiesArray != null) {
         for (let i = 0; i < basketTeddiesArray.length; i++) { //Iteration for all basketProducts
             if (basketTeddiesAdded != null) { //If there is something in the basket
@@ -316,7 +302,6 @@ function openConfirmationPage(orderID, totalPrice) {
         orderArray.push(confirmationInformations);
         localStorage.setItem('orders', JSON.stringify(orderArray));
     }
-    console.log(localStorage.getItem("orders"));
     window.location.href = './confirmation.html?orderId=' + orderID;
 }
 
@@ -332,7 +317,6 @@ const postCommand = async(url, dataToSend) => {
         },
     })
     if (response.ok) {
-        console.log("Envoi des données réussi");
         return await response.json();
     } else {
         console.log("Erreur lors de l'envoi des données : " + error);
@@ -377,11 +361,6 @@ buttonSend.addEventListener('click', async(event) => {
         alertErrorText(basketForm, "veuillez remplir tous les champs");
     } else if (validText(formName.value) === false || validText(formFirstName.value) === false || validAddress(formAddress.value) === false || validText(formCity.value) === false || validMail(formMail.value) === false) {
         inputsControls();
-        console.log("Le nom respecte le format : " + validText(formName.value));
-        console.log("Le prénom respecte le format : " + validText(formFirstName.value));
-        console.log("L'adresse respecte le format : " + validAddress(formAddress.value));
-        console.log("La ville respecte le format : " + validText(formCity.value));
-        console.log("L'email respecte le format : " + validMail(formMail.value));
         alert("Merci de remplir correctement les champs");
     } else if (basketTeddiesArray.length === 0) {
         alert("Merci d'ajouter des oursons au panier");
@@ -400,11 +379,8 @@ buttonSend.addEventListener('click', async(event) => {
             email: formMail.value,
         }
         let toSend = { contact, products };
-        console.log(toSend);
         const response = await postCommand(api_2, toSend);
         if (response) {
-            console.log(response.orderId);
-            console.log(definitiveTotalPrice);
             openConfirmationPage(response.orderId, definitiveTotalPrice);
         }
     }

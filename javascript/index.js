@@ -48,24 +48,20 @@ function addProductCard(section, dataTeddyPicture, dataTeddyName, dataTeddyPrice
     newButton.setAttribute('href', './product.html?id=' + dataTeddy_id);
     newButton.className = "catalogue__section__card__btn btn btn-info";
     newButton.setAttribute("type", "button");
-    console.log(dataTeddy_id);
 }
 /*----->REQUEST>-----*/
 function getAllTeddies() {
     fetch(api_1) //Requete de l'API
         .then(function(response) {
             if (response.ok) {
-                console.log("Récupération des données de l'API OK");
                 //Fonction de réponse
                 return response.json() // Retourne la réponse en format JSON quand terminé
             }
         })
         .then(function(data) { //réponse de reponse.json est l'argument
-            console.log(data)
-                //Section Add
+            //Section Add
             for (let i = 0; i < data.length; i++) {
-                console.log(i)
-                    //Add Product card
+                //Add Product card
                 addProductCard(catalogue, data[i].imageUrl, data[i].name, data[i].price, data[i]._id);
             }
         })
