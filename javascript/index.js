@@ -22,7 +22,7 @@ function addProductCard(section, dataTeddyPicture, dataTeddyName, dataTeddyPrice
     const newPicture = document.createElement("img");
     newSection_1.appendChild(newPicture);
     newPicture.setAttribute('src', dataTeddyPicture);
-    newPicture.className = "catalogue__section__card__img card-img-top"
+    newPicture.className = "catalogue__section__card__img card-img-top img_fit"
 
     //New div card-body
     const newDiv = document.createElement("div");

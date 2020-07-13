@@ -8,6 +8,9 @@
     width: 100%;
     &__section__card {
         border-radius: 2%;
+        &__img {
+            max-height: 217px;
+        }
         &__text {
             padding: 10px;
             &__name {

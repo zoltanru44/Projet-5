@@ -136,6 +136,11 @@ body {
 }
 
 /*FOOTER END*/
+.img_fit {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 /*MAIN START*/
 .main__title {
   margin: 30px 10px;
@@ -147,6 +152,10 @@ body {
 
 .catalogue__section__card {
   border-radius: 2%;
+}
+
+.catalogue__section__card__img {
+  max-height: 217px;
 }
 
 .catalogue__section__card__text {
@@ -236,6 +245,8 @@ body {
 }
 
 .panier_main__section__basket__li {
+  margin-left: 0;
+  margin-right: 0;
   text-align: left;
 }
 

@@ -59,7 +59,7 @@ function addProductList_description(section, localDataTeddy, i) {
     const newPicture = document.createElement("img");
     newDiv_1.appendChild(newPicture);
     newPicture.setAttribute('src', localDataTeddy[i].picture);
-    newPicture.className = "panier_main__section__basket__product__img col-md-3 mx_auto";
+    newPicture.className = "panier_main__section__basket__product__img col-md-3 mx_auto img_fit";
 
     //DIV_1 --->Creation of DIV_2 for description and option
     const newDiv_2 = document.createElement("div"); //Creation of div

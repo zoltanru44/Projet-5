@@ -35,6 +35,8 @@ body {
         }
         &__basket {
             &__li {
+                margin-left: 0;
+                margin-right: 0;
                 text-align: left;
                 @include responsive_mobile_size {
                     text-align: center;
