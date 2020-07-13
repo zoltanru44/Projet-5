@@ -4,6 +4,12 @@
 /*header margin*/
 /*Responsive screen size*/
 /*mixin responsive*/
+@media screen and (max-width: 768px) {
+  .responsive_text_center {
+    text-align: center;
+  }
+}
+
 /*reinitit link*/
 a {
   text-decoration: none;
@@ -123,6 +129,12 @@ body {
   font-size: 0.7em;
 }
 
+.footer__sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+}
+
 /*FOOTER END*/
 /*MAIN START*/
 .main__title {
@@ -154,8 +166,14 @@ body {
 }
 
 /*MAIN END*/
-.right_bloc__description .right_bloc__options__list__choice {
-  font-size: 1em;
+.right_bloc {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 576px) {
+  .right_bloc {
+    margin-top: 0px;
+  }
 }
 
 body {
@@ -297,4 +315,8 @@ body {
 
 .panier_main__aside__form {
   font-size: 1em;
+}
+
+.confirmation_historic {
+  padding: 5px;
 }

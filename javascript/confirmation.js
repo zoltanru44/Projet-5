@@ -19,8 +19,9 @@ console.log(orderAddedArray);
 /*----->FUNCTIONS<-----*/
 //Function to get url ID
 function getUrl_Id() {
-    const winLocation_ID_array = winLocation.split("="); //Split the location.search
-    winLocation_ID = winLocation_ID_array[1]; //Get the part after "="
+    const winLocationParameters = new URLSearchParams(winLocation);
+    winLocation_ID = winLocationParameters.get('orderId');
+    console.log(winLocation_ID);
     return winLocation_ID;
 }
 

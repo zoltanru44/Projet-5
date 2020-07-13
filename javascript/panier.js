@@ -105,11 +105,17 @@ function addProductList_description(section, localDataTeddy, i) {
     newButton.className = "btn btn-warning";
     newButton.type = "button";
     //Function for delete product button
+
     newButton.addEventListener('click', function() {
-        let basketTeddiesNewArray = JSON.parse(localStorage.getItem("basketProducts"));
-        basketTeddiesNewArray.splice(i, 1);
-        localStorage.setItem('basketProducts', JSON.stringify(basketTeddiesNewArray));
+        basketTeddiesArray.splice(i, 1);
+        localStorage.setItem('basketProducts', JSON.stringify(basketTeddiesArray));
         section.removeChild(newDiv);
+        console.log(basketTeddiesArray.length);
+        if (basketTeddiesArray.length <= 0) {
+            localStorage.removeItem("basketProducts")
+            basketTeddiesArray = JSON.parse(basketTeddiesAdded);
+        }
+        console.log(basketTeddiesArray);
         refreshNumberBasket();
         document.location.reload(true);
 
@@ -273,9 +279,9 @@ formMailGroup.addEventListener("input", function() {
 
 /*----->Function layout<-----*/
 function getProductList() {
-    if (basketTeddiesArray.length != 0) {
+    console.log(basketTeddiesArray);
+    if (basketTeddiesArray != null) {
         for (let i = 0; i < basketTeddiesArray.length; i++) { //Iteration for all basketProducts
-            console.log(i);
             if (basketTeddiesAdded != null) { //If there is something in the basket
                 addProductList_description(basketContent, basketTeddiesArray, i);
                 totalCalculation(i);

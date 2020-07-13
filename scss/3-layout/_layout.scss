@@ -79,6 +79,10 @@ body {
     &__legal {
         font-size: 0.7em;
     }
+    &__sticky {
+        position: sticky;
+        bottom: 0;
+    }
 }
 
 

@@ -18,8 +18,9 @@ const buttonAddDiv = document.getElementById("button_add_div");
 
 //Function to get the id without ?id=
 function getUrl_Id() {
-    const winLocation_ID_array = winLocation.split("="); //Split the location.search
-    winLocation_ID = winLocation_ID_array[1]; //Get the part after "="
+    const winLocationParameters = new URLSearchParams(winLocation);
+    winLocation_ID = winLocationParameters.get('id');
+    console.log(winLocation_ID);
     return winLocation_ID;
 }
 //Function Add Picture
@@ -39,7 +40,7 @@ function addName(section, dataTeddyName) {
 //Function Add description
 function addDescription(dataTeddyDescription) {
     teddyDescription.innerHTML = dataTeddyDescription;
-    teddyDescription.className = "text-left";
+    teddyDescription.classList.add("responsive_text_center");
 }
 //Function options
 function addOptions(ulName, dataOption) {
@@ -89,6 +90,7 @@ function textMessageAlertNumber(section) {
 
 /*----->REQUEST>-----*/
 function getAllTeddies() {
+    console.log(api_1 + winLocation_ID);
     fetch(api_1 + winLocation_ID) //Requete de l'API
         .then(function(response) {
             if (response.ok) {

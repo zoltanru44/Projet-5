@@ -1,10 +1,6 @@
 .right_bloc {
-    &__description &__options {
-        &__list {
-            &__choice {
-                font-size: 1em;
-                ;
-            }
-        }
+    margin-top: 20px;
+    @include responsive_mobile_size {
+        margin-top: 0px;
     }
 }

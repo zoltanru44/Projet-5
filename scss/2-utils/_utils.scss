@@ -11,3 +11,13 @@
         @content;
     }
 }
+
+@mixin responsive_text_center {
+    @include responsive_tablet_smartphone_size() {
+        text-align: center;
+    }
+}
+
+.responsive_text_center {
+    @include responsive_text_center();
+}
