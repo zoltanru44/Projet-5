@@ -70,7 +70,6 @@ function promiseGet() {
 promiseGet()
     .then(function(data) { //réponse de reponse.json est l'argument
         //Section Add
-        console.log(data);
         for (let i = 0; i < data.length; i++) {
             //Add Product card
             addProductCard(catalogue, data[i].imageUrl, data[i].name, data[i].price, data[i]._id);
