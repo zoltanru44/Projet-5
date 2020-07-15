@@ -49,26 +49,33 @@ function addProductCard(section, dataTeddyPicture, dataTeddyName, dataTeddyPrice
     newButton.className = "catalogue__section__card__btn btn btn-info";
     newButton.setAttribute("type", "button");
 }
-/*----->REQUEST>-----*/
-function getAllTeddies() {
-    fetch(api_1) //Requete de l'API
-        .then(function(response) {
-            if (response.ok) {
-                //Fonction de réponse
-                return response.json() // Retourne la réponse en format JSON quand terminé
+/*----->PROMISE>-----*/
+function promiseGet() {
+    return new Promise((resolve, reject) => {
+        let recupHttp = new XMLHttpRequest();
+        recupHttp.open('GET', api_1);
+        recupHttp.send();
+        recupHttp.onreadystatechange = function() {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 200) {
+                    resolve(JSON.parse(this.responseText));
+                } else {
+                    reject(recupHttp);
+                }
             }
-        })
-        .then(function(data) { //réponse de reponse.json est l'argument
-            //Section Add
-            for (let i = 0; i < data.length; i++) {
-                //Add Product card
-                addProductCard(catalogue, data[i].imageUrl, data[i].name, data[i].price, data[i]._id);
-            }
-        })
-        .catch(function(error) {
-            console.log("Erreur lors de l'appel de la fonction" + error);
-        })
+        }
+    })
 }
-
-/*----->Appel de la fonction<-----*/
-getAllTeddies()
+/*----->REQUEST>-----*/
+promiseGet()
+    .then(function(data) { //réponse de reponse.json est l'argument
+        //Section Add
+        console.log(data);
+        for (let i = 0; i < data.length; i++) {
+            //Add Product card
+            addProductCard(catalogue, data[i].imageUrl, data[i].name, data[i].price, data[i]._id);
+        }
+    })
+    .catch(function(error) {
+        console.log("Erreur lors de l'appel de la fonction" + error);
+    })

@@ -87,66 +87,73 @@ function textMessageAlertNumber(section) {
     infoTextAlert.innerHTML = "Merci d'ajouter une quantité valide"
 }
 
-/*----->REQUEST>-----*/
-function getAllTeddies() {
-    fetch(api_1 + winLocation_ID) //Requete de l'API
-        .then(function(response) {
-            if (response.ok) {
-                //Fonction de réponse
-                return response.json() // Retourne la réponse en format JSON quand terminé
-            }
-        })
-        .then(function(data) {
-            //left block Adds
-            // Add picture
-            addPicture(leftBlock, data.imageUrl);
-            // Add name
-            addName(leftBlock, data.name);
-            //Right bloc Adds
-            //Add Description
-            addDescription(data.description);
-            //Add options
-            addOptions(optionList, data.colors);
-            //Add price
-            addPrice(productPrice, data.price);
-
-            /*----->EVENT<-----*/
-
-            //Click function create addTeddy
-            buttonAddBasket.addEventListener('click', function() {
-                if (productNumber.value <= 0) {
-                    textMessageAlertNumber(buttonAddDiv);
+/*----->PROMISE>-----*/
+function promiseGet() {
+    return new Promise((resolve, reject) => {
+        let recupHttp = new XMLHttpRequest();
+        recupHttp.open('GET', api_1 + winLocation_ID);
+        recupHttp.send();
+        recupHttp.onreadystatechange = function() {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 200) {
+                    resolve(JSON.parse(this.responseText));
                 } else {
-                    let addTeddy = {
-                        ID: data._id,
-                        picture: data.imageUrl,
-                        name: data.name,
-                        option: optionList.value,
-                        price: data.price,
-                        description: data.description,
-                        number: productNumber.value,
-                    }
-                    const teddiesAdded = localStorage.getItem("basketProducts")
-                    if (teddiesAdded) {
-                        teddiesArray = JSON.parse(teddiesAdded);
-                        teddiesArray.push(addTeddy);
-                        localStorage.setItem('basketProducts', JSON.stringify(teddiesArray));
-                        textMessageAdd(buttonAddDiv, productNumber.value, productNumber.value, data.name)
-                    } else {
-                        teddiesArray = [];
-                        teddiesArray.push(addTeddy);
-                        localStorage.setItem('basketProducts', JSON.stringify(teddiesArray));
-                        textMessageAdd(buttonAddDiv, productNumber.value, productNumber.value, data.name)
-                    }
-                    refreshNumberBasket();
+                    reject(recupHttp);
                 }
-            });
-        })
-        .catch(function(error) {
-            console.log("Erreur lors de l'appel de la fonction" + error);
-        })
+            }
+        }
+    })
 }
-
-/*----->Appel de la fonction<-----*/
+/*----->Appel de la fonction URL<-----*/
 getUrl_Id();
-getAllTeddies();
+/*----->REQUEST>-----*/
+promiseGet()
+    .then(function(data) {
+        //left block Adds
+        // Add picture
+        addPicture(leftBlock, data.imageUrl);
+        // Add name
+        addName(leftBlock, data.name);
+        //Right bloc Adds
+        //Add Description
+        addDescription(data.description);
+        //Add options
+        addOptions(optionList, data.colors);
+        //Add price
+        addPrice(productPrice, data.price);
+
+        /*----->EVENT<-----*/
+
+        //Click function create addTeddy
+        buttonAddBasket.addEventListener('click', function() {
+            if (productNumber.value <= 0) {
+                textMessageAlertNumber(buttonAddDiv);
+            } else {
+                let addTeddy = {
+                    ID: data._id,
+                    picture: data.imageUrl,
+                    name: data.name,
+                    option: optionList.value,
+                    price: data.price,
+                    description: data.description,
+                    number: productNumber.value,
+                }
+                const teddiesAdded = localStorage.getItem("basketProducts")
+                if (teddiesAdded) {
+                    teddiesArray = JSON.parse(teddiesAdded);
+                    teddiesArray.push(addTeddy);
+                    localStorage.setItem('basketProducts', JSON.stringify(teddiesArray));
+                    textMessageAdd(buttonAddDiv, productNumber.value, productNumber.value, data.name)
+                } else {
+                    teddiesArray = [];
+                    teddiesArray.push(addTeddy);
+                    localStorage.setItem('basketProducts', JSON.stringify(teddiesArray));
+                    textMessageAdd(buttonAddDiv, productNumber.value, productNumber.value, data.name)
+                }
+                refreshNumberBasket();
+            }
+        });
+    })
+    .catch(function(error) {
+        console.log("Erreur lors de l'appel de la fonction" + error);
+    })
